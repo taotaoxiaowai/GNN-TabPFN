@@ -1,5 +1,6 @@
 from .gat import GATClassifier
 from .gat import GATEncoder
+from .h2gcn import H2GCNEncoder
 from .gprgnn import GPRGNNEncoder
 from .linkx import LINKXEncoder
 from .fagcn import FAGCNEncoder
@@ -18,4 +19,5 @@ __all__ = [
     "LINKXEncoder",
     "FAGCNEncoder",
     "GPRGNNEncoder",
+    "H2GCNEncoder",
 ]

@@ -1,0 +1,41 @@
+Linear pretrain split: train=3120, val=1040, test=1041
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=linkx, hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, linkx_edge_layers=1, linkx_node_layers=1, fagcn_eps=0.1, gpr_alpha=0.1
+[Pretrain] epoch=001 loss=1.6823 train_acc=0.2000 val_acc=0.2000
+[Pretrain] epoch=020 loss=0.5362 train_acc=0.6628 val_acc=0.2577
+[Pretrain] epoch=040 loss=0.3548 train_acc=0.8984 val_acc=0.2760
+[Pretrain] epoch=060 loss=0.2872 train_acc=0.9224 val_acc=0.3144
+[Pretrain] epoch=080 loss=0.2321 train_acc=0.9404 val_acc=0.3058
+[Pretrain] epoch=100 loss=0.2139 train_acc=0.7587 val_acc=0.2663
+[Pretrain] epoch=120 loss=0.2534 train_acc=0.9295 val_acc=0.3048
+[Pretrain] epoch=140 loss=0.1553 train_acc=0.9526 val_acc=0.2971
+[Pretrain] epoch=160 loss=0.1364 train_acc=0.9548 val_acc=0.2981
+[Pretrain] epoch=180 loss=0.2703 train_acc=0.8728 val_acc=0.3144
+[Pretrain] epoch=200 loss=0.1172 train_acc=0.9548 val_acc=0.3000
+[Pretrain] epoch=220 loss=0.1211 train_acc=0.9554 val_acc=0.3106
+[Pretrain] epoch=240 loss=0.1118 train_acc=0.9606 val_acc=0.3096
+[Pretrain] epoch=260 loss=0.1243 train_acc=0.9660 val_acc=0.3135
+[Pretrain] epoch=280 loss=0.2839 train_acc=0.9074 val_acc=0.3087
+[Pretrain] epoch=300 loss=0.1221 train_acc=0.9577 val_acc=0.2942
+[Pretrain] selected epoch=105 val_acc=0.3279
+[squirrel] embedding built after pretraining (shape=(5201, 128))
+  selected-layer embedding (layer=1/2) shape=(5201, 128) mean=0.0030 std=1.7636 min=-52.1979 max=49.9581
+Prediction embedding branch setting: branch=branch1, pre_agg_pca_dim=64, add_graph_engineered_features=False
+[squirrel] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=192
+Graph engineered features disabled. total_dim=192
+Applied feature normalization: none.
+Split complete: x_train=(4160, 192), x_test=(1041, 192), num_classes=5, actual_train_test_ratio=3.9962
+TabPFN test accuracy: 0.3305
+TabPFN classification report:
+              precision    recall  f1-score   support
+
+           0     0.5000    0.4019    0.4456       209
+           1     0.2829    0.2788    0.2809       208
+           2     0.2788    0.3029    0.2903       208
+           3     0.2525    0.2452    0.2488       208
+           4     0.3667    0.4231    0.3929       208
+
+    accuracy                         0.3305      1041
+   macro avg     0.3362    0.3304    0.3317      1041
+weighted avg     0.3363    0.3305    0.3318      1041
+

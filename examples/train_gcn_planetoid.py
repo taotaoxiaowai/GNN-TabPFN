@@ -32,6 +32,7 @@ from dl_research_kit.models import FAGCNEncoder
 from dl_research_kit.models import GATEncoder
 from dl_research_kit.models import GCNEncoder
 from dl_research_kit.models import GPRGNNEncoder
+from dl_research_kit.models import H2GCNEncoder
 from dl_research_kit.models import LINKXEncoder
 from dl_research_kit.models import SAGEEncoder
 from dl_research_kit.training import collect_embedding_snapshot
@@ -48,7 +49,7 @@ from dl_research_kit.utils import set_seed
 CONCAT_PRE_AGG_EMBEDDING_DATASETS = {"chameleon", "squirrel", "Actor"}
 HETEROPHILY_DATASETS = {"actor", "squirrel", "chameleon"}
 HOMOPHILY_BACKBONES = ("gcn", "gat", "sage")
-HETEROPHILY_BACKBONES = ("linkx", "fagcn", "gprgnn")
+HETEROPHILY_BACKBONES = ("linkx", "fagcn", "gprgnn", "h2gcn")
 HETEROPHILY_BACKBONE_REPLACE_MAP = {
     "gcn": "linkx",
     "gat": "fagcn",
@@ -537,6 +538,14 @@ def main() -> None:
                 num_layers=args.num_layers,
                 dropout=args.dropout,
                 alpha=args.gpr_alpha,
+            ).to(device)
+        if name == "h2gcn":
+            return H2GCNEncoder(
+                input_dim=data.num_features,
+                hidden_dim=args.hidden_dim,
+                embedding_dim=args.embedding_dim,
+                num_layers=args.num_layers,
+                dropout=args.dropout,
             ).to(device)
         raise ValueError(f"Unknown encoder backbone: {name}")
 
