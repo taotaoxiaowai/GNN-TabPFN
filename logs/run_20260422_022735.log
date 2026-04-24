@@ -1,0 +1,267 @@
+=============================================== 
+Run started at 2026/04/22 周三  2:27:35.88 
+Working directory: D:\university\GCN-TabPFN\code 
+=============================================== 
+ 
+---------- STEP 1 START 2026/04/22 周三  2:27:35.94 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset chameleon --encoder-fusion sum --prediction-head tabpfn-ensemble-average --tabpfn-device cuda --tabpfn-ens-sources all-backbones --tabpfn-ens-candidates-per-table 2 --tabpfn-ens-context-size 0 --tabpfn-ens-colsample-min-rate 0.95 --tabpfn-ens-colsample-max-rate 1.0 --tabpfn-ens-n-jobs 1 --num-layers 1 --split-source random --train-test-ratio 4  --feature-normalization none 
+[INFO] Step 1 completed successfully. 
+---------- STEP 1 OUTPUT BEGIN ---------- 
+Linear pretrain split: train=1456, val=365, test=456
+Split setting: source=random, requested_train_test_ratio=4.0000
+Fusion setting: encoder_fusion=sum, models=[gcn,gat,sage], hidden_dim=128, embedding_dim=128, num_layers=1, dropout=0.5, gat_heads=8, weighted_fusion_train_strategy=two-stage
+Pretraining encoder: gcn
+[Pretrain] epoch=001 loss=1.6129 train_acc=0.3352 val_acc=0.3260
+[Pretrain] epoch=020 loss=1.1736 train_acc=0.5701 val_acc=0.3041
+[Pretrain] epoch=040 loss=0.9527 train_acc=0.7212 val_acc=0.3178
+[Pretrain] epoch=060 loss=0.8244 train_acc=0.7534 val_acc=0.2877
+[Pretrain] epoch=080 loss=0.7489 train_acc=0.7747 val_acc=0.2904
+[Pretrain] epoch=100 loss=0.7001 train_acc=0.7871 val_acc=0.2575
+[Pretrain] epoch=120 loss=0.6716 train_acc=0.7898 val_acc=0.2658
+[Pretrain] epoch=140 loss=0.6428 train_acc=0.7960 val_acc=0.2603
+[Pretrain] epoch=160 loss=0.6300 train_acc=0.7974 val_acc=0.2493
+[Pretrain] epoch=180 loss=0.6135 train_acc=0.8036 val_acc=0.2658
+[Pretrain] epoch=200 loss=0.6034 train_acc=0.8063 val_acc=0.2658
+[Pretrain] selected epoch=006 val_acc=0.3644
+  gcn embedding shape: (2277, 128)
+Pretraining encoder: gat
+[Pretrain] epoch=001 loss=1.6076 train_acc=0.2582 val_acc=0.2384
+[Pretrain] epoch=020 loss=1.2816 train_acc=0.6587 val_acc=0.3890
+[Pretrain] epoch=040 loss=1.1514 train_acc=0.7349 val_acc=0.3699
+[Pretrain] epoch=060 loss=1.0513 train_acc=0.7672 val_acc=0.3616
+[Pretrain] epoch=080 loss=1.0525 train_acc=0.8194 val_acc=0.3890
+[Pretrain] epoch=100 loss=1.0235 train_acc=0.8310 val_acc=0.3863
+[Pretrain] epoch=120 loss=1.0017 train_acc=0.8304 val_acc=0.3863
+[Pretrain] epoch=140 loss=1.0055 train_acc=0.8283 val_acc=0.3863
+[Pretrain] epoch=160 loss=0.9906 train_acc=0.8365 val_acc=0.3753
+[Pretrain] epoch=180 loss=1.0048 train_acc=0.8407 val_acc=0.3918
+[Pretrain] epoch=200 loss=0.9939 train_acc=0.8379 val_acc=0.3781
+[Pretrain] selected epoch=035 val_acc=0.4137
+  gat embedding shape: (2277, 128)
+Pretraining encoder: sage
+[Pretrain] epoch=001 loss=1.6102 train_acc=0.2411 val_acc=0.2301
+[Pretrain] epoch=020 loss=0.9172 train_acc=0.8180 val_acc=0.4055
+[Pretrain] epoch=040 loss=0.5942 train_acc=0.9327 val_acc=0.4493
+[Pretrain] epoch=060 loss=0.4472 train_acc=0.9451 val_acc=0.4603
+[Pretrain] epoch=080 loss=0.3737 train_acc=0.9478 val_acc=0.4521
+[Pretrain] epoch=100 loss=0.3295 train_acc=0.9499 val_acc=0.4438
+[Pretrain] epoch=120 loss=0.3027 train_acc=0.9499 val_acc=0.4438
+[Pretrain] epoch=140 loss=0.2838 train_acc=0.9499 val_acc=0.4521
+[Pretrain] epoch=160 loss=0.2694 train_acc=0.9499 val_acc=0.4548
+[Pretrain] epoch=180 loss=0.2599 train_acc=0.9505 val_acc=0.4329
+[Pretrain] epoch=200 loss=0.2527 train_acc=0.9505 val_acc=0.4466
+[Pretrain] selected epoch=062 val_acc=0.4685
+  sage embedding shape: (2277, 128)
+[chameleon] fused embedding built (shape=(2277, 128))
+  fused embedding stats shape=(2277, 128) mean=0.0018 std=0.9929 min=-7.7766 max=8.9134
+  fusion weights [gcn, gat, sage] = [0.3333, 0.3333, 0.3333]
+[chameleon] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=195
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree], new_total_dim=195
+Applied feature normalization: none.
+Split complete: x_train=(1821, 195), x_test=(456, 195), num_classes=5, actual_train_test_ratio=3.9934
+TabPFN ensemble-average enabled: sources=['fused_sum', 'gat', 'gcn', 'sage'], candidates_per_table=2, context_size=fit-full, colsample=[0.95, 1.0], n_jobs=1
+TabPFN ensemble-average test accuracy: 0.5768
+TabPFN ensemble-average summary: num_candidates=8, table_weights={'fused_sum': 0.25, 'gat': 0.25, 'gcn': 0.25, 'sage': 0.25}
+TabPFN ensemble-average classification report:
+              precision    recall  f1-score   support
+
+           0     0.7941    0.5934    0.6792        91
+           1     0.6944    0.5435    0.6098        92
+           2     0.4767    0.4505    0.4633        91
+           3     0.5631    0.5577    0.5604       104
+           4     0.4724    0.7692    0.5854        78
+
+    accuracy                         0.5768       456
+   macro avg     0.6002    0.5829    0.5796       456
+weighted avg     0.6030    0.5768    0.5790       456
+
+---------- STEP 1 OUTPUT END ------------ 
+---------- STEP 1 END 2026/04/22 周三  2:33:58.76 ---------- 
+ 
+---------- STEP 2 START 2026/04/22 周三  2:33:58.78 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset Squirrel --encoder-fusion sum --prediction-head tabpfn-ensemble-average --tabpfn-device cuda --tabpfn-ens-sources all-backbones --tabpfn-ens-candidates-per-table 2 --tabpfn-ens-context-size 0 --tabpfn-ens-colsample-min-rate 0.95 --tabpfn-ens-colsample-max-rate 1.0 --tabpfn-ens-n-jobs 1 --num-layers 1 --split-source random --train-test-ratio 4  --feature-normalization none 
+[ERROR] Step 2 failed with exit code 2. 
+---------- STEP 2 OUTPUT BEGIN ---------- 
+usage: train_gcn_planetoid.py [-h]
+                              [--dataset {Cora,CiteSeer,PubMed,Computers,Photo,chameleon,squirrel,Actor}]
+                              [--root ROOT] [--base-model {gcn,gat,sage}]
+                              [--encoder-fusion {none,sum,weighted}]
+                              [--hidden-dim HIDDEN_DIM]
+                              [--embedding-dim EMBEDDING_DIM]
+                              [--num-layers NUM_LAYERS] [--dropout DROPOUT]
+                              [--gat-heads GAT_HEADS]
+                              [--inspect-layer INSPECT_LAYER] [--seed SEED]
+                              [--split-source {mask,random}]
+                              [--test-size TEST_SIZE] [--val-size VAL_SIZE]
+                              [--train-test-ratio TRAIN_TEST_RATIO]
+                              [--pretrain-epochs PRETRAIN_EPOCHS]
+                              [--pretrain-lr PRETRAIN_LR]
+                              [--pretrain-weight-decay PRETRAIN_WEIGHT_DECAY]
+                              [--pretrain-log-every PRETRAIN_LOG_EVERY]
+                              [--encoder-pretrain-head {linear,tabpfn-frozen-forward}]
+                              [--tabpfn-frozen-adapter TABPFN_FROZEN_ADAPTER]
+                              [--tabpfn-frozen-model-path TABPFN_FROZEN_MODEL_PATH]
+                              [--tabpfn-frozen-config-path TABPFN_FROZEN_CONFIG_PATH]
+                              [--fusion-epochs FUSION_EPOCHS]
+                              [--fusion-lr FUSION_LR]
+                              [--fusion-weight-decay FUSION_WEIGHT_DECAY]
+                              [--fusion-log-every FUSION_LOG_EVERY]
+                              [--weighted-fusion-train-strategy {two-stage,joint}]
+                              [--prediction-head {tabpfn,linear,limix,tabpfn-ensemble-selection,tabpfn-ensemble-average}]
+                              [--device {cpu,cuda}]
+                              [--tabpfn-device {cpu,cuda}] [--tabpfn-bagging]
+                              [--tabpfn-bagging-m TABPFN_BAGGING_M]
+                              [--tabpfn-bagging-context-size TABPFN_BAGGING_CONTEXT_SIZE]
+                              [--tabpfn-frozen-subset-size TABPFN_FROZEN_SUBSET_SIZE]
+                              [--tabpfn-frozen-context-ratio TABPFN_FROZEN_CONTEXT_RATIO]
+                              [--tabpfn-bagging-aggregation {average,vote}]
+                              [--tabpfn-bagging-n-jobs TABPFN_BAGGING_N_JOBS]
+                              [--tabpfn-bagging-feature-drop-rate TABPFN_BAGGING_FEATURE_DROP_RATE]
+                              [--tabpfn-ens-sources {current,all-backbones}]
+                              [--tabpfn-ens-val-size TABPFN_ENS_VAL_SIZE]
+                              [--tabpfn-ens-candidates-per-table TABPFN_ENS_CANDIDATES_PER_TABLE]
+                              [--tabpfn-ens-context-size TABPFN_ENS_CONTEXT_SIZE]
+                              [--tabpfn-ens-colsample-min-rate TABPFN_ENS_COLSAMPLE_MIN_RATE]
+                              [--tabpfn-ens-colsample-max-rate TABPFN_ENS_COLSAMPLE_MAX_RATE]
+                              [--tabpfn-ens-max-selected TABPFN_ENS_MAX_SELECTED]
+                              [--tabpfn-ens-n-jobs TABPFN_ENS_N_JOBS]
+                              [--limix-model-path LIMIX_MODEL_PATH]
+                              [--limix-config-path LIMIX_CONFIG_PATH]
+                              [--feature-normalization {none,standardize}]
+                              [--save-prefix SAVE_PREFIX]
+train_gcn_planetoid.py: error: argument --dataset: invalid choice: 'Squirrel' (choose from 'Cora', 'CiteSeer', 'PubMed', 'Computers', 'Photo', 'chameleon', 'squirrel', 'Actor')
+---------- STEP 2 OUTPUT END ------------ 
+---------- STEP 2 END 2026/04/22 周三  2:34:06.68 ---------- 
+ 
+---------- STEP 3 START 2026/04/22 周三  2:34:06.71 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset Actor --encoder-fusion sum --prediction-head tabpfn-ensemble-average --tabpfn-device cuda --tabpfn-ens-sources all-backbones --tabpfn-ens-candidates-per-table 1 --tabpfn-ens-context-size 0 --tabpfn-ens-colsample-min-rate 0.95 --tabpfn-ens-colsample-max-rate 1.0 --tabpfn-ens-n-jobs 1 --num-layers 1 --split-source random --train-test-ratio 4  --feature-normalization none 
+[INFO] Step 3 completed successfully. 
+---------- STEP 3 OUTPUT BEGIN ---------- 
+Linear pretrain split: train=4864, val=1216, test=1520
+Split setting: source=random, requested_train_test_ratio=4.0000
+Fusion setting: encoder_fusion=sum, models=[gcn,gat,sage], hidden_dim=128, embedding_dim=128, num_layers=1, dropout=0.5, gat_heads=8, weighted_fusion_train_strategy=two-stage
+Pretraining encoder: gcn
+[Pretrain] epoch=001 loss=1.6077 train_acc=0.2595 val_acc=0.2590
+[Pretrain] epoch=020 loss=1.4787 train_acc=0.3538 val_acc=0.2977
+[Pretrain] epoch=040 loss=1.3982 train_acc=0.4256 val_acc=0.3076
+[Pretrain] epoch=060 loss=1.3429 train_acc=0.4542 val_acc=0.2977
+[Pretrain] epoch=080 loss=1.3058 train_acc=0.4741 val_acc=0.2887
+[Pretrain] epoch=100 loss=1.2832 train_acc=0.4772 val_acc=0.2961
+[Pretrain] epoch=120 loss=1.2695 train_acc=0.4846 val_acc=0.2919
+[Pretrain] epoch=140 loss=1.2617 train_acc=0.4842 val_acc=0.2952
+[Pretrain] epoch=160 loss=1.2560 train_acc=0.4844 val_acc=0.2878
+[Pretrain] epoch=180 loss=1.2535 train_acc=0.4887 val_acc=0.2854
+[Pretrain] epoch=200 loss=1.2516 train_acc=0.4918 val_acc=0.2821
+[Pretrain] selected epoch=031 val_acc=0.3174
+  gcn embedding shape: (7600, 128)
+Pretraining encoder: gat
+[Pretrain] epoch=001 loss=1.6172 train_acc=0.2539 val_acc=0.2401
+[Pretrain] epoch=020 loss=1.5064 train_acc=0.3653 val_acc=0.3158
+[Pretrain] epoch=040 loss=1.4782 train_acc=0.4143 val_acc=0.3043
+[Pretrain] epoch=060 loss=1.4468 train_acc=0.4433 val_acc=0.3109
+[Pretrain] epoch=080 loss=1.4354 train_acc=0.4468 val_acc=0.3109
+[Pretrain] epoch=100 loss=1.4328 train_acc=0.4468 val_acc=0.3043
+[Pretrain] epoch=120 loss=1.4259 train_acc=0.4521 val_acc=0.2961
+[Pretrain] epoch=140 loss=1.4191 train_acc=0.4634 val_acc=0.3076
+[Pretrain] epoch=160 loss=1.4140 train_acc=0.4607 val_acc=0.2928
+[Pretrain] epoch=180 loss=1.4255 train_acc=0.4644 val_acc=0.2887
+[Pretrain] epoch=200 loss=1.4171 train_acc=0.4607 val_acc=0.2977
+[Pretrain] selected epoch=102 val_acc=0.3183
+  gat embedding shape: (7600, 128)
+Pretraining encoder: sage
+[Pretrain] epoch=001 loss=1.6167 train_acc=0.2346 val_acc=0.2146
+[Pretrain] epoch=020 loss=1.2718 train_acc=0.4788 val_acc=0.3808
+[Pretrain] epoch=040 loss=1.1271 train_acc=0.5681 val_acc=0.3668
+[Pretrain] epoch=060 loss=1.0396 train_acc=0.6141 val_acc=0.3627
+[Pretrain] epoch=080 loss=0.9797 train_acc=0.6404 val_acc=0.3610
+[Pretrain] epoch=100 loss=0.9378 train_acc=0.6600 val_acc=0.3528
+[Pretrain] epoch=120 loss=0.9094 train_acc=0.6653 val_acc=0.3536
+[Pretrain] epoch=140 loss=0.8934 train_acc=0.6766 val_acc=0.3413
+[Pretrain] epoch=160 loss=0.8778 train_acc=0.6828 val_acc=0.3421
+[Pretrain] epoch=180 loss=0.8672 train_acc=0.6912 val_acc=0.3421
+[Pretrain] epoch=200 loss=0.8676 train_acc=0.6933 val_acc=0.3339
+[Pretrain] selected epoch=022 val_acc=0.3865
+  sage embedding shape: (7600, 128)
+[Actor] fused embedding built (shape=(7600, 128))
+  fused embedding stats shape=(7600, 128) mean=0.0004 std=0.9966 min=-17.8038 max=14.8240
+  fusion weights [gcn, gat, sage] = [0.3333, 0.3333, 0.3333]
+[Actor] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=195
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree], new_total_dim=195
+Applied feature normalization: none.
+Split complete: x_train=(6080, 195), x_test=(1520, 195), num_classes=5, actual_train_test_ratio=4.0000
+TabPFN ensemble-average enabled: sources=['fused_sum', 'gat', 'gcn', 'sage'], candidates_per_table=1, context_size=fit-full, colsample=[0.95, 1.0], n_jobs=1
+TabPFN ensemble-average test accuracy: 0.3750
+TabPFN ensemble-average summary: num_candidates=4, table_weights={'fused_sum': 0.25, 'gat': 0.25, 'gcn': 0.25, 'sage': 0.25}
+TabPFN ensemble-average classification report:
+              precision    recall  f1-score   support
+
+           0     0.4196    0.2749    0.3322       171
+           1     0.3123    0.2959    0.3038       267
+           2     0.2705    0.2730    0.2718       326
+           3     0.2933    0.2755    0.2841       363
+           4     0.5258    0.6489    0.5809       393
+
+    accuracy                         0.3750      1520
+   macro avg     0.3643    0.3536    0.3545      1520
+weighted avg     0.3661    0.3750    0.3671      1520
+
+---------- STEP 3 OUTPUT END ------------ 
+---------- STEP 3 END 2026/04/22 周三  8:21:06.36 ---------- 
+ 
+---------- STEP 4 START 2026/04/22 周三  8:21:06.39 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset Computers --encoder-fusion sum --prediction-head tabpfn-ensemble-average --tabpfn-device cuda --tabpfn-ens-sources all-backbones --tabpfn-ens-candidates-per-table 1 --tabpfn-ens-context-size 0 --tabpfn-ens-colsample-min-rate 0.95 --tabpfn-ens-colsample-max-rate 1.0 --tabpfn-ens-n-jobs 1 --split-source random --train-test-ratio 4  --feature-normalization none --pretrain-epoch 100 --train-epoch 300 
+[ERROR] Step 4 failed with exit code 2. 
+---------- STEP 4 OUTPUT BEGIN ---------- 
+usage: train_gcn_planetoid.py [-h]
+                              [--dataset {Cora,CiteSeer,PubMed,Computers,Photo,chameleon,squirrel,Actor}]
+                              [--root ROOT] [--base-model {gcn,gat,sage}]
+                              [--encoder-fusion {none,sum,weighted}]
+                              [--hidden-dim HIDDEN_DIM]
+                              [--embedding-dim EMBEDDING_DIM]
+                              [--num-layers NUM_LAYERS] [--dropout DROPOUT]
+                              [--gat-heads GAT_HEADS]
+                              [--inspect-layer INSPECT_LAYER] [--seed SEED]
+                              [--split-source {mask,random}]
+                              [--test-size TEST_SIZE] [--val-size VAL_SIZE]
+                              [--train-test-ratio TRAIN_TEST_RATIO]
+                              [--pretrain-epochs PRETRAIN_EPOCHS]
+                              [--pretrain-lr PRETRAIN_LR]
+                              [--pretrain-weight-decay PRETRAIN_WEIGHT_DECAY]
+                              [--pretrain-log-every PRETRAIN_LOG_EVERY]
+                              [--encoder-pretrain-head {linear,tabpfn-frozen-forward}]
+                              [--tabpfn-frozen-adapter TABPFN_FROZEN_ADAPTER]
+                              [--tabpfn-frozen-model-path TABPFN_FROZEN_MODEL_PATH]
+                              [--tabpfn-frozen-config-path TABPFN_FROZEN_CONFIG_PATH]
+                              [--fusion-epochs FUSION_EPOCHS]
+                              [--fusion-lr FUSION_LR]
+                              [--fusion-weight-decay FUSION_WEIGHT_DECAY]
+                              [--fusion-log-every FUSION_LOG_EVERY]
+                              [--weighted-fusion-train-strategy {two-stage,joint}]
+                              [--prediction-head {tabpfn,linear,limix,tabpfn-ensemble-selection,tabpfn-ensemble-average}]
+                              [--device {cpu,cuda}]
+                              [--tabpfn-device {cpu,cuda}] [--tabpfn-bagging]
+                              [--tabpfn-bagging-m TABPFN_BAGGING_M]
+                              [--tabpfn-bagging-context-size TABPFN_BAGGING_CONTEXT_SIZE]
+                              [--tabpfn-frozen-subset-size TABPFN_FROZEN_SUBSET_SIZE]
+                              [--tabpfn-frozen-context-ratio TABPFN_FROZEN_CONTEXT_RATIO]
+                              [--tabpfn-bagging-aggregation {average,vote}]
+                              [--tabpfn-bagging-n-jobs TABPFN_BAGGING_N_JOBS]
+                              [--tabpfn-bagging-feature-drop-rate TABPFN_BAGGING_FEATURE_DROP_RATE]
+                              [--tabpfn-ens-sources {current,all-backbones}]
+                              [--tabpfn-ens-val-size TABPFN_ENS_VAL_SIZE]
+                              [--tabpfn-ens-candidates-per-table TABPFN_ENS_CANDIDATES_PER_TABLE]
+                              [--tabpfn-ens-context-size TABPFN_ENS_CONTEXT_SIZE]
+                              [--tabpfn-ens-colsample-min-rate TABPFN_ENS_COLSAMPLE_MIN_RATE]
+                              [--tabpfn-ens-colsample-max-rate TABPFN_ENS_COLSAMPLE_MAX_RATE]
+                              [--tabpfn-ens-max-selected TABPFN_ENS_MAX_SELECTED]
+                              [--tabpfn-ens-n-jobs TABPFN_ENS_N_JOBS]
+                              [--limix-model-path LIMIX_MODEL_PATH]
+                              [--limix-config-path LIMIX_CONFIG_PATH]
+                              [--feature-normalization {none,standardize}]
+                              [--save-prefix SAVE_PREFIX]
+train_gcn_planetoid.py: error: unrecognized arguments: --train-epoch 300
+---------- STEP 4 OUTPUT END ------------ 
+---------- STEP 4 END 2026/04/22 周三  8:21:15.64 ---------- 
+[WARN] Execution stopped because a step failed. 
+Run finished at 2026/04/22 周三  8:21:15.67 
+=============================================== 

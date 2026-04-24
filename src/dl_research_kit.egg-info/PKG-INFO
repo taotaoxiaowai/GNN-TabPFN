@@ -1,0 +1,87 @@
+Metadata-Version: 2.4
+Name: dl-research-kit
+Version: 0.1.0
+Summary: A lightweight deep learning research package template.
+Author: Research Team
+License: MIT
+Requires-Python: <3.12,>=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.24
+Requires-Dist: scipy>=1.10
+Requires-Dist: pandas>=2.0
+Requires-Dist: scikit-learn>=1.3
+Requires-Dist: torch>=2.2
+Requires-Dist: tqdm>=4.66
+Requires-Dist: pyyaml>=6.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"
+Requires-Dist: mypy>=1.11; extra == "dev"
+Requires-Dist: ipykernel>=6.29; extra == "dev"
+
+# dl-research-kit
+
+用于深度学习科研算法实现的 Python 包模板，包含：
+
+- 可扩展的 `src/` 包结构
+- 训练循环与模型示例
+- 可重复实验的随机种子工具
+- 单元测试样例
+- 与 Anaconda 环境配套的配置
+
+## 1. 当前环境说明
+
+你本机已有环境：`gcn_tabpfn`。  
+已检测到其 Python 版本为 `3.10.20`。
+
+本项目目标版本是 **Python 3.11**（见 `pyproject.toml`）。  
+如果你必须严格使用 3.11，建议新建兼容环境（见第 3 节）。
+
+## 2. 快速开始（复用现有 gcn_tabpfn）
+
+```powershell
+conda activate gcn_tabpfn
+pip install -e .[dev]
+pytest
+```
+
+## 3. 严格 Python 3.11 方案
+
+项目提供了 `environment.gcn_tabpfn-py311.yml`，可创建新环境：
+
+```powershell
+conda env create -f environment.gcn_tabpfn-py311.yml
+conda activate gcn_tabpfn_py311
+pip install -e .[dev]
+```
+
+## 4. 项目结构
+
+```text
+.
+├── pyproject.toml
+├── environment.gcn_tabpfn-py311.yml
+├── README.md
+├── src
+│   └── dl_research_kit
+│       ├── __init__.py
+│       ├── cli.py
+│       ├── config.py
+│       ├── engine
+│       │   └── trainer.py
+│       ├── models
+│       │   └── mlp.py
+│       └── utils
+│           └── seed.py
+├── examples
+│   └── train_toy.py
+└── tests
+    └── test_smoke.py
+```
+
+## 5. 示例运行
+
+```powershell
+python -m dl_research_kit.cli
+python examples/train_toy.py
+```

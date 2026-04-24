@@ -1,0 +1,40 @@
+Linear pretrain split: train=1365, val=456, test=456
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=sage, hidden_dim=128, embedding_dim=128, num_layers=1, dropout=0.5, gat_heads=8
+[Pretrain] epoch=001 loss=1.6116 train_acc=0.4593 val_acc=0.3092
+[Pretrain] epoch=020 loss=0.8998 train_acc=0.8337 val_acc=0.4167
+[Pretrain] epoch=040 loss=0.5823 train_acc=0.9355 val_acc=0.4890
+[Pretrain] epoch=060 loss=0.4383 train_acc=0.9473 val_acc=0.4890
+[Pretrain] epoch=080 loss=0.3660 train_acc=0.9473 val_acc=0.4934
+[Pretrain] epoch=100 loss=0.3235 train_acc=0.9509 val_acc=0.4825
+[Pretrain] epoch=120 loss=0.2969 train_acc=0.9495 val_acc=0.4846
+[Pretrain] epoch=140 loss=0.2777 train_acc=0.9495 val_acc=0.4781
+[Pretrain] epoch=160 loss=0.2646 train_acc=0.9495 val_acc=0.4693
+[Pretrain] epoch=180 loss=0.2563 train_acc=0.9502 val_acc=0.4868
+[Pretrain] epoch=200 loss=0.2482 train_acc=0.9495 val_acc=0.4781
+[Pretrain] epoch=220 loss=0.2428 train_acc=0.9509 val_acc=0.4846
+[Pretrain] epoch=240 loss=0.2389 train_acc=0.9495 val_acc=0.4825
+[Pretrain] epoch=260 loss=0.2354 train_acc=0.9502 val_acc=0.4759
+[Pretrain] epoch=280 loss=0.2316 train_acc=0.9495 val_acc=0.4715
+[Pretrain] epoch=300 loss=0.2313 train_acc=0.9509 val_acc=0.4737
+[Pretrain] selected epoch=106 val_acc=0.4978
+[chameleon] embedding built after pretraining (shape=(2277, 128))
+  selected-layer embedding (layer=1/1) shape=(2277, 128) mean=0.0029 std=0.0400 min=-0.2353 max=0.2221
+[chameleon] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=128 -> total_dim=259
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree], new_total_dim=259
+Applied feature normalization: none.
+Split complete: x_train=(1821, 259), x_test=(456, 259), num_classes=5, actual_train_test_ratio=3.9934
+TabPFN test accuracy: 0.5592
+TabPFN classification report:
+              precision    recall  f1-score   support
+
+           0     0.7571    0.5824    0.6584        91
+           1     0.6585    0.5870    0.6207        92
+           2     0.4222    0.4176    0.4199        91
+           3     0.5234    0.5385    0.5308       104
+           4     0.5047    0.6923    0.5838        78
+
+    accuracy                         0.5592       456
+   macro avg     0.5732    0.5635    0.5627       456
+weighted avg     0.5739    0.5592    0.5613       456
+

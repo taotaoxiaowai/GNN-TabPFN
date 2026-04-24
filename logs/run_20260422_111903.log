@@ -1,0 +1,82 @@
+=============================================== 
+Run started at 2026/04/22 周三 11:19:03.79 
+Working directory: D:\university\GCN-TabPFN\code 
+=============================================== 
+ 
+---------- STEP 1 START 2026/04/22 周三 11:19:03.83 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset chameleon --encoder-fusion sum --prediction-head tabpfn-ensemble-average --tabpfn-device cuda --tabpfn-ens-sources all-backbones --tabpfn-ens-candidates-per-table 2 --tabpfn-ens-context-size 0 --tabpfn-ens-colsample-min-rate 1.0 --tabpfn-ens-colsample-max-rate 1.0 --tabpfn-ens-n-jobs 1 --num-layers 1 --split-source random --train-test-ratio 4  --feature-normalization none 
+[INFO] Step 1 completed successfully. 
+---------- STEP 1 OUTPUT BEGIN ---------- 
+Linear pretrain split: train=1456, val=365, test=456
+Split setting: source=random, requested_train_test_ratio=4.0000
+Fusion setting: encoder_fusion=sum, models=[gcn,gat,sage], hidden_dim=128, embedding_dim=128, num_layers=1, dropout=0.5, gat_heads=8, weighted_fusion_train_strategy=two-stage
+Pretraining encoder: gcn
+[Pretrain] epoch=001 loss=1.6129 train_acc=0.3352 val_acc=0.3260
+[Pretrain] epoch=020 loss=1.1736 train_acc=0.5701 val_acc=0.3041
+[Pretrain] epoch=040 loss=0.9527 train_acc=0.7212 val_acc=0.3178
+[Pretrain] epoch=060 loss=0.8244 train_acc=0.7534 val_acc=0.2877
+[Pretrain] epoch=080 loss=0.7489 train_acc=0.7747 val_acc=0.2904
+[Pretrain] epoch=100 loss=0.7001 train_acc=0.7885 val_acc=0.2575
+[Pretrain] epoch=120 loss=0.6719 train_acc=0.7905 val_acc=0.2658
+[Pretrain] epoch=140 loss=0.6429 train_acc=0.7940 val_acc=0.2603
+[Pretrain] epoch=160 loss=0.6260 train_acc=0.8001 val_acc=0.2548
+[Pretrain] epoch=180 loss=0.6164 train_acc=0.8063 val_acc=0.2630
+[Pretrain] epoch=200 loss=0.6056 train_acc=0.8393 val_acc=0.2767
+[Pretrain] selected epoch=006 val_acc=0.3644
+  gcn embedding shape: (2277, 128)
+Pretraining encoder: gat
+[Pretrain] epoch=001 loss=1.6076 train_acc=0.2582 val_acc=0.2384
+[Pretrain] epoch=020 loss=1.2816 train_acc=0.6587 val_acc=0.3890
+[Pretrain] epoch=040 loss=1.1514 train_acc=0.7349 val_acc=0.3699
+[Pretrain] epoch=060 loss=1.0513 train_acc=0.7672 val_acc=0.3616
+[Pretrain] epoch=080 loss=1.0525 train_acc=0.8194 val_acc=0.3890
+[Pretrain] epoch=100 loss=1.0235 train_acc=0.8310 val_acc=0.3863
+[Pretrain] epoch=120 loss=1.0017 train_acc=0.8304 val_acc=0.3863
+[Pretrain] epoch=140 loss=1.0055 train_acc=0.8283 val_acc=0.3863
+[Pretrain] epoch=160 loss=0.9906 train_acc=0.8365 val_acc=0.3753
+[Pretrain] epoch=180 loss=1.0048 train_acc=0.8407 val_acc=0.3918
+[Pretrain] epoch=200 loss=0.9939 train_acc=0.8379 val_acc=0.3781
+[Pretrain] selected epoch=035 val_acc=0.4137
+  gat embedding shape: (2277, 128)
+Pretraining encoder: sage
+[Pretrain] epoch=001 loss=1.6102 train_acc=0.2411 val_acc=0.2301
+[Pretrain] epoch=020 loss=0.9172 train_acc=0.8180 val_acc=0.4055
+[Pretrain] epoch=040 loss=0.5942 train_acc=0.9327 val_acc=0.4493
+[Pretrain] epoch=060 loss=0.4472 train_acc=0.9451 val_acc=0.4603
+[Pretrain] epoch=080 loss=0.3737 train_acc=0.9478 val_acc=0.4521
+[Pretrain] epoch=100 loss=0.3295 train_acc=0.9499 val_acc=0.4438
+[Pretrain] epoch=120 loss=0.3028 train_acc=0.9499 val_acc=0.4438
+[Pretrain] epoch=140 loss=0.2837 train_acc=0.9499 val_acc=0.4493
+[Pretrain] epoch=160 loss=0.2696 train_acc=0.9499 val_acc=0.4521
+[Pretrain] epoch=180 loss=0.2600 train_acc=0.9499 val_acc=0.4548
+[Pretrain] epoch=200 loss=0.2529 train_acc=0.9505 val_acc=0.4466
+[Pretrain] selected epoch=062 val_acc=0.4685
+  sage embedding shape: (2277, 128)
+[chameleon] fused embedding built (shape=(2277, 128))
+  fused embedding stats shape=(2277, 128) mean=0.0018 std=0.9929 min=-7.7766 max=8.9134
+  fusion weights [gcn, gat, sage] = [0.3333, 0.3333, 0.3333]
+[chameleon] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=195
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree], new_total_dim=195
+Applied feature normalization: none.
+Split complete: x_train=(1821, 195), x_test=(456, 195), num_classes=5, actual_train_test_ratio=3.9934
+TabPFN ensemble-average enabled: sources=['fused_sum', 'gat', 'gcn', 'sage'], candidates_per_table=2, context_size=fit-full, colsample=[1.0, 1.0], n_jobs=1
+TabPFN ensemble-average test accuracy: 0.5746
+TabPFN ensemble-average summary: num_candidates=8, table_weights={'fused_sum': 0.25, 'gat': 0.25, 'gcn': 0.25, 'sage': 0.25}
+TabPFN ensemble-average classification report:
+              precision    recall  f1-score   support
+
+           0     0.7971    0.6044    0.6875        91
+           1     0.7042    0.5435    0.6135        92
+           2     0.4819    0.4396    0.4598        91
+           3     0.5545    0.5385    0.5463       104
+           4     0.4621    0.7821    0.5810        78
+
+    accuracy                         0.5746       456
+   macro avg     0.6000    0.5816    0.5776       456
+weighted avg     0.6028    0.5746    0.5767       456
+
+---------- STEP 1 OUTPUT END ------------ 
+---------- STEP 1 END 2026/04/22 周三 11:25:47.35 ---------- 
+ 
+---------- STEP 2 START 2026/04/22 周三 11:25:47.38 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset squirrel --encoder-fusion sum --prediction-head tabpfn-ensemble-average --tabpfn-device cuda --tabpfn-ens-sources all-backbones --tabpfn-ens-candidates-per-table 2 --tabpfn-ens-context-size 0 --tabpfn-ens-colsample-min-rate 1.0 --tabpfn-ens-colsample-max-rate 1.0 --tabpfn-ens-n-jobs 1 --num-layers 1 --split-source random --train-test-ratio 4  --feature-normalization none 

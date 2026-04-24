@@ -1,0 +1,21 @@
+name: gcn_tabpfn_py311
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - scikit-learn
+  - pytorch
+  - cpuonly
+  - pyyaml
+  - tqdm
+  - pytest
+  - pip:
+      - -e .[dev]
+      - torch-geometric
+      - tabpfn

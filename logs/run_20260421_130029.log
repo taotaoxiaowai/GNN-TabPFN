@@ -1,0 +1,7 @@
+=============================================== 
+Run started at 2026/04/21 周二 13:00:29.29 
+Working directory: d:\university\GCN-TabPFN\code 
+=============================================== 
+ 
+---------- STEP 1 START 2026/04/21 周二 13:00:29.33 ---------- 
+Command: python examples\train_gcn_planetoid.py --dataset Computers --base-model gat --split-source random --train-test-ratio 4 --val-size 0.25 --encoder-pretrain-head linear --prediction-head tabpfn --device cuda --pretrain-epochs 300 --tabpfn-device cuda --feature-normalization none 

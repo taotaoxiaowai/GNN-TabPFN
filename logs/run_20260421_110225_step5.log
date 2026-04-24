@@ -1,0 +1,50 @@
+Linear pretrain split: train=1365, val=456, test=456
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=sage, hidden_dim=128, embedding_dim=128, num_layers=1, dropout=0.5, gat_heads=8
+[Pretrain] epoch=001 loss=1.6116 train_acc=0.4593 val_acc=0.3092
+[Pretrain] epoch=020 loss=0.8998 train_acc=0.8337 val_acc=0.4167
+[Pretrain] epoch=040 loss=0.5823 train_acc=0.9355 val_acc=0.4890
+[Pretrain] epoch=060 loss=0.4383 train_acc=0.9473 val_acc=0.4890
+[Pretrain] epoch=080 loss=0.3660 train_acc=0.9473 val_acc=0.4934
+[Pretrain] epoch=100 loss=0.3235 train_acc=0.9509 val_acc=0.4825
+[Pretrain] epoch=120 loss=0.2969 train_acc=0.9495 val_acc=0.4846
+[Pretrain] epoch=140 loss=0.2777 train_acc=0.9495 val_acc=0.4759
+[Pretrain] epoch=160 loss=0.2644 train_acc=0.9495 val_acc=0.4846
+[Pretrain] epoch=180 loss=0.2547 train_acc=0.9495 val_acc=0.4868
+[Pretrain] epoch=200 loss=0.2479 train_acc=0.9495 val_acc=0.4737
+[Pretrain] epoch=220 loss=0.2432 train_acc=0.9495 val_acc=0.4693
+[Pretrain] epoch=240 loss=0.2378 train_acc=0.9509 val_acc=0.4759
+[Pretrain] epoch=260 loss=0.2358 train_acc=0.9495 val_acc=0.4803
+[Pretrain] epoch=280 loss=0.2339 train_acc=0.9495 val_acc=0.4803
+[Pretrain] epoch=300 loss=0.2316 train_acc=0.9502 val_acc=0.4803
+[Pretrain] selected epoch=106 val_acc=0.4978
+[chameleon] embedding built after pretraining (shape=(2277, 128))
+  selected-layer embedding (layer=1/1) shape=(2277, 128) mean=0.0029 std=0.0400 min=-0.2353 max=0.2220
+[chameleon] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=128 -> total_dim=259
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree], new_total_dim=259
+[LinearHead] epoch=001 loss=2.3854 train_acc=0.2505 val_acc=0.2171
+[LinearHead] epoch=020 loss=0.7675 train_acc=0.7597 val_acc=0.4737
+[LinearHead] epoch=040 loss=0.5080 train_acc=0.8696 val_acc=0.4868
+[LinearHead] epoch=060 loss=0.3875 train_acc=0.9158 val_acc=0.4890
+[LinearHead] epoch=080 loss=0.3154 train_acc=0.9465 val_acc=0.4868
+[LinearHead] epoch=100 loss=0.2673 train_acc=0.9575 val_acc=0.4846
+[LinearHead] epoch=120 loss=0.2333 train_acc=0.9634 val_acc=0.4868
+[LinearHead] epoch=140 loss=0.2084 train_acc=0.9641 val_acc=0.4912
+[LinearHead] epoch=160 loss=0.1894 train_acc=0.9648 val_acc=0.4912
+[LinearHead] epoch=180 loss=0.1747 train_acc=0.9663 val_acc=0.4890
+[LinearHead] epoch=200 loss=0.1629 train_acc=0.9670 val_acc=0.4868
+[LinearHead] selected epoch=146 val_acc=0.4956
+Linear-head test accuracy: 0.4583
+Linear-head classification report:
+              precision    recall  f1-score   support
+
+           0     0.5974    0.5055    0.5476        91
+           1     0.5333    0.4348    0.4790        92
+           2     0.3647    0.3407    0.3523        91
+           3     0.4352    0.4519    0.4434       104
+           4     0.4054    0.5769    0.4762        78
+
+    accuracy                         0.4583       456
+   macro avg     0.4672    0.4620    0.4597       456
+weighted avg     0.4682    0.4583    0.4588       456
+
