@@ -5,6 +5,7 @@ import os
 import sys
 from typing import Dict, List
 
+import numpy as np
 # Ensure local package is importable when running examples directly.
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.abspath(os.path.join(_SCRIPT_DIR, ".."))
@@ -94,10 +95,17 @@ def _build_graph_engineered_features(
     edge_index: torch.Tensor,
 ) -> torch.Tensor:
     """
-    Build 3 node-level engineered features:
+    Build graph-engineered node features for branch2 (scalarized version).
+
+    Returned columns (all scalar per node):
     1) Random-walk Laplacian response norm: ||(I - D^{-1}A)X||_2
     2) Unique neighbor count (excluding self-loop)
     3) Node degree (edge multiplicity-aware on row index)
+    4) 1-hop mean-distance encoding: ||x_i - mean_1hop(x_N(i))||_2
+    5) 1-hop mean-direction encoding: cosine(x_i, mean_1hop(x_N(i)))
+    6) 1-hop dispersion scalar: trace(cov(X_1hop))
+    7) 2-hop dispersion scalar: trace(cov(X_2hop_exact))
+    8) PageRank score
     """
     x_cpu = x.detach().cpu().to(torch.float32)
     edge_index_cpu = edge_index.detach().cpu().to(torch.long)
@@ -132,7 +140,95 @@ def _build_graph_engineered_features(
         neighbor_count = neighbor_count.unsqueeze(-1)
 
     degree_col = deg.unsqueeze(-1)
-    return torch.cat([lap_rw_resp_norm, neighbor_count, degree_col], dim=-1)
+
+    # Build unique adjacency list (excluding self-loops) for 1-hop and 2-hop stats.
+    neighbors_1hop: List[set[int]] = [set() for _ in range(num_nodes)]
+    for r, c in zip(row.tolist(), col.tolist()):
+        if r != c:
+            neighbors_1hop[r].add(c)
+
+    x_np = x_cpu.numpy()
+
+    l2_diff_1hop = np.zeros((num_nodes, 1), dtype=np.float32)
+    cos_sim_1hop = np.zeros((num_nodes, 1), dtype=np.float32)
+    hop1_dispersion_trace = np.zeros((num_nodes, 1), dtype=np.float32)
+    hop2_dispersion_trace = np.zeros((num_nodes, 1), dtype=np.float32)
+
+    eps = 1e-8
+    for i in range(num_nodes):
+        center_feat = x_np[i]
+
+        n1_set = neighbors_1hop[i]
+        if n1_set:
+            n1_idx = np.fromiter(n1_set, dtype=np.int64)
+            n1_vals = x_np[n1_idx]
+            n1_mean = n1_vals.mean(axis=0)
+
+            diff = center_feat - n1_mean
+            l2_diff_1hop[i, 0] = np.linalg.norm(diff, ord=2)
+            cos_sim_1hop[i, 0] = float(np.dot(center_feat, n1_mean) / ((np.linalg.norm(center_feat) * np.linalg.norm(n1_mean)) + eps))
+
+            if n1_vals.shape[0] >= 2:
+                centered_1 = n1_vals - n1_mean
+                # trace(cov) = sum of per-feature variances.
+                hop1_dispersion_trace[i, 0] = float((centered_1 * centered_1).sum(axis=1).mean())
+
+        # Exactly-2-hop neighbors: neighbors of neighbors, excluding self and 1-hop nodes.
+        n2_set: set[int] = set()
+        for n in n1_set:
+            n2_set.update(neighbors_1hop[n])
+        n2_set.discard(i)
+        if n1_set:
+            n2_set.difference_update(n1_set)
+
+        if n2_set:
+            n2_idx = np.fromiter(n2_set, dtype=np.int64)
+            n2_vals = x_np[n2_idx]
+            n2_mean = n2_vals.mean(axis=0)
+            if n2_vals.shape[0] >= 2:
+                centered_2 = n2_vals - n2_mean
+                hop2_dispersion_trace[i, 0] = float((centered_2 * centered_2).sum(axis=1).mean())
+
+    # Power-iteration PageRank on row-normalized transition matrix.
+    alpha = 0.85
+    row_np = row.numpy()
+    col_np = col.numpy()
+    deg_np = deg.numpy()
+    nonzero_mask = deg_np > 0
+    inv_deg_np = np.zeros((num_nodes,), dtype=np.float32)
+    inv_deg_np[nonzero_mask] = 1.0 / deg_np[nonzero_mask]
+
+    pr = np.full((num_nodes,), 1.0 / max(num_nodes, 1), dtype=np.float32)
+    teleport = (1.0 - alpha) / max(num_nodes, 1)
+    dangling_mask = ~nonzero_mask
+    for _ in range(50):
+        contrib = pr[row_np] * inv_deg_np[row_np]
+        pr_next = np.zeros_like(pr)
+        np.add.at(pr_next, col_np, contrib)
+        dangling_mass = float(pr[dangling_mask].sum())
+        pr_next = alpha * (pr_next + dangling_mass / max(num_nodes, 1)) + teleport
+        if np.linalg.norm(pr_next - pr, ord=1) < 1e-8:
+            pr = pr_next
+            break
+        pr = pr_next
+    pagerank_col = torch.from_numpy(pr).to(torch.float32).unsqueeze(-1)
+
+    scalar_features = torch.from_numpy(
+        np.concatenate(
+            [
+                l2_diff_1hop,
+                cos_sim_1hop,
+                hop1_dispersion_trace,
+                hop2_dispersion_trace,
+            ],
+            axis=1,
+        )
+    ).to(torch.float32)
+
+    return torch.cat(
+        [lap_rw_resp_norm, neighbor_count, degree_col, scalar_features, pagerank_col],
+        dim=-1,
+    )
 
 
 def parse_args() -> argparse.Namespace:
@@ -361,7 +457,7 @@ def parse_args() -> argparse.Namespace:
         type=str,
         default="branch2",
         choices=["branch1", "branch2"],
-        help="branch1: graph embedding (+ optional PCA pre-agg); branch2: branch1 + 3 engineered graph features.",
+        help=("branch1: graph embedding (+ optional PCA pre-agg); branch2: branch1 + scalar graph engineered features (lap/degree/count + l2/cos + hop-dispersion + PageRank)."),
     )
     parser.add_argument(
         "--pre-agg-pca-dim",
@@ -740,7 +836,7 @@ def main() -> None:
     if add_graph_engineered_features:
         print(
             "Appended graph engineered features to prediction embedding: "
-            "[lap_rw_resp_norm, neighbor_count, degree], "
+            "[lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], "
             f"new_total_dim={prediction_embedding.size(1)}"
         )
     else:
