@@ -18,17 +18,18 @@ echo.
 echo [INFO] Master log: "%MASTER_LOG%"
 echo.
 
-call :RunOne 1 "python examples/train_gcn_planetoid.py --dataset squirrel --base-model linkx --encoder-fusion none --encoder-pretrain-head linear --prediction-head tabpfn --embedding-branch branch1 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
+call :RunOne 1 "python examples/train_gcn_planetoid.py --dataset PubMed --base-model gcn --encoder-fusion none --encoder-pretrain-head linear --prediction-head linear --embedding-branch branch2  --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
 
-call :RunOne 2 "python examples/train_gcn_planetoid.py --dataset squirrel --base-model linkx --encoder-fusion none --encoder-pretrain-head linear --prediction-head linear --embedding-branch branch1 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
+call :RunOne 2 "python examples/train_gcn_planetoid.py --dataset PubMed --base-model gcn --encoder-fusion none --encoder-pretrain-head linear --prediction-head tabpfn --embedding-branch branch2  --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
 
-call :RunOne 3 "python examples/train_gcn_planetoid.py --dataset squirrel --base-model fagcn --encoder-fusion none --encoder-pretrain-head linear --prediction-head tabpfn --embedding-branch branch1 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
+call :RunOne 3 "python examples/train_gcn_planetoid.py --dataset PubMed --base-model gat --encoder-fusion none --encoder-pretrain-head linear --prediction-head linear --embedding-branch branch2  --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
 
-call :RunOne 4 "python examples/train_gcn_planetoid.py --dataset squirrel --base-model fagcn --encoder-fusion none --encoder-pretrain-head linear --prediction-head linear --embedding-branch branch1 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
+call :RunOne 4 "python examples/train_gcn_planetoid.py --dataset PubMed --base-model gat --encoder-fusion none --encoder-pretrain-head linear --prediction-head tabpfn --embedding-branch branch2  --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
 
-call :RunOne 5 "python examples/train_gcn_planetoid.py --dataset squirrel --base-model gprgnn --encoder-fusion none --encoder-pretrain-head linear --prediction-head tabpfn --embedding-branch branch1 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
+call :RunOne 5 "python examples/train_gcn_planetoid.py --dataset PubMed --base-model sage --encoder-fusion none --encoder-pretrain-head linear --prediction-head linear --embedding-branch branch2  --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
 
-call :RunOne 6 "python examples/train_gcn_planetoid.py --dataset squirrel --base-model gprgnn --encoder-fusion none --encoder-pretrain-head linear --prediction-head linear --embedding-branch branch1 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
+call :RunOne 6 "python examples/train_gcn_planetoid.py --dataset PubMed --base-model sage --encoder-fusion none --encoder-pretrain-head linear --prediction-head tabpfn --embedding-branch branch2  --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none"
+
 
 
 echo [INFO] All commands finished successfully.

@@ -1,0 +1,43 @@
+Linear pretrain split: train=4590, val=1530, test=1530
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=gcn, hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, linkx_edge_layers=1, linkx_node_layers=1, fagcn_eps=0.1, gpr_alpha=0.1
+[Pretrain] epoch=001 loss=2.0737 train_acc=0.2538 val_acc=0.2536
+[Pretrain] epoch=020 loss=1.8947 train_acc=0.3529 val_acc=0.3405
+[Pretrain] epoch=040 loss=1.3258 train_acc=0.4778 val_acc=0.4758
+[Pretrain] epoch=060 loss=0.8014 train_acc=0.7499 val_acc=0.7346
+[Pretrain] epoch=080 loss=0.4908 train_acc=0.8630 val_acc=0.8451
+[Pretrain] epoch=100 loss=0.4073 train_acc=0.9118 val_acc=0.8948
+[Pretrain] epoch=120 loss=0.3758 train_acc=0.9207 val_acc=0.9059
+[Pretrain] epoch=140 loss=0.3354 train_acc=0.9255 val_acc=0.9124
+[Pretrain] epoch=160 loss=0.3498 train_acc=0.9283 val_acc=0.9118
+[Pretrain] epoch=180 loss=0.3084 train_acc=0.9290 val_acc=0.9157
+[Pretrain] epoch=200 loss=0.3022 train_acc=0.9325 val_acc=0.9170
+[Pretrain] epoch=220 loss=0.2870 train_acc=0.9355 val_acc=0.9203
+[Pretrain] epoch=240 loss=0.2803 train_acc=0.9366 val_acc=0.9216
+[Pretrain] epoch=260 loss=0.2774 train_acc=0.9370 val_acc=0.9209
+[Pretrain] epoch=280 loss=0.2769 train_acc=0.9390 val_acc=0.9209
+[Pretrain] epoch=300 loss=0.2698 train_acc=0.9390 val_acc=0.9157
+[Pretrain] selected epoch=286 val_acc=0.9261
+[Photo] embedding built after pretraining (shape=(7650, 128))
+  selected-layer embedding (layer=1/2) shape=(7650, 128) mean=0.0009 std=0.0197 min=-0.1081 max=0.2537
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=0, add_graph_engineered_features=True
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=136
+Applied feature normalization: none.
+Split complete: x_train=(6120, 136), x_test=(1530, 136), num_classes=8, actual_train_test_ratio=4.0000
+TabPFN test accuracy: 0.9451
+TabPFN classification report:
+              precision    recall  f1-score   support
+
+           0     0.9718    0.9324    0.9517        74
+           1     0.9608    0.9466    0.9537       337
+           2     0.9630    0.9220    0.9420       141
+           3     0.8854    0.9290    0.9067       183
+           4     0.9333    0.9545    0.9438       176
+           5     0.9588    0.9879    0.9731       165
+           6     0.9444    0.9639    0.9541       388
+           7     0.9815    0.8030    0.8833        66
+
+    accuracy                         0.9451      1530
+   macro avg     0.9499    0.9299    0.9386      1530
+weighted avg     0.9459    0.9451    0.9449      1530
+

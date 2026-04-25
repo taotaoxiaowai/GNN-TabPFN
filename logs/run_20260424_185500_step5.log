@@ -1,0 +1,107 @@
+Linear pretrain split: train=3120, val=1040, test=1041
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=h2gcn, hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, linkx_edge_layers=1, linkx_node_layers=1, fagcn_eps=0.1, gpr_alpha=0.1
+[Pretrain] epoch=001 loss=1.6092 train_acc=0.2635 val_acc=0.2856
+[Pretrain] epoch=020 loss=1.5514 train_acc=0.2958 val_acc=0.3077
+[Pretrain] epoch=040 loss=1.5415 train_acc=0.2958 val_acc=0.3077
+[Pretrain] epoch=060 loss=1.5228 train_acc=0.3000 val_acc=0.3029
+[Pretrain] epoch=080 loss=1.5242 train_acc=0.3038 val_acc=0.3029
+[Pretrain] epoch=100 loss=1.5149 train_acc=0.3064 val_acc=0.2990
+[Pretrain] epoch=120 loss=1.5215 train_acc=0.3096 val_acc=0.2654
+[Pretrain] epoch=140 loss=1.5203 train_acc=0.3061 val_acc=0.2981
+[Pretrain] epoch=160 loss=1.5062 train_acc=0.3067 val_acc=0.3029
+[Pretrain] epoch=180 loss=1.5096 train_acc=0.3042 val_acc=0.2731
+[Pretrain] epoch=200 loss=1.5074 train_acc=0.3128 val_acc=0.2990
+[Pretrain] epoch=220 loss=1.5064 train_acc=0.3090 val_acc=0.2692
+[Pretrain] epoch=240 loss=1.5091 train_acc=0.3074 val_acc=0.2740
+[Pretrain] epoch=260 loss=1.5034 train_acc=0.3087 val_acc=0.2798
+[Pretrain] epoch=280 loss=1.5045 train_acc=0.3151 val_acc=0.3010
+[Pretrain] epoch=300 loss=1.5042 train_acc=0.3119 val_acc=0.3038
+[Pretrain] selected epoch=078 val_acc=0.3087
+[squirrel] embedding built after pretraining (shape=(5201, 128))
+  selected-layer embedding (layer=1/2) shape=(5201, 128) mean=0.0024 std=0.0381 min=-0.1907 max=0.1610
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=64, add_graph_engineered_features=True
+[squirrel] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=200
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=200
+Applied feature normalization: none.
+Split complete: x_train=(4160, 200), x_test=(1041, 200), num_classes=5, actual_train_test_ratio=3.9962
+Traceback (most recent call last):
+  File "D:\university\GCN-TabPFN\code\examples\train_gcn_planetoid.py", line 1126, in <module>
+    main()
+  File "D:\university\GCN-TabPFN\code\examples\train_gcn_planetoid.py", line 897, in main
+    result = run_tabpfn_classifier(
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\university\GCN-TabPFN\code\src\dl_research_kit\inference\tabpfn.py", line 61, in run_tabpfn_classifier
+    y_pred = clf.predict(x_test_np)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\classifier.py", line 1110, in predict
+    probas = self._predict_proba(X=X)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\classifier.py", line 1185, in _predict_proba
+    self._raw_predict(X, return_logits=False).float().detach().cpu().numpy()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\classifier.py", line 1093, in _raw_predict
+    return self.forward(
+           ^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\classifier.py", line 1420, in forward
+    for output, config in self.executor_.iter_outputs(
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\inference.py", line 429, in iter_outputs
+    for config, output in zip(self.ensemble_preprocessor.configs, timed_outputs):
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\inference.py", line 57, in __next__
+    value = next(self._inner)
+            ^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\parallel_execute.py", line 53, in parallel_execute
+    yield from _execute_in_current_thread(devices[0], functions)
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\parallel_execute.py", line 62, in _execute_in_current_thread
+    yield function(device=device)
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\inference.py", line 478, in _call_model
+    return model(
+           ^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\architectures\tabpfn_v2_6.py", line 688, in forward
+    x_BRCD = block(
+             ^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\architectures\tabpfn_v2_6.py", line 445, in forward
+    x_BRCE = chunked_evaluate_maybe_inplace(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\architectures\shared\chunked_evaluate.py", line 61, in chunked_evaluate_maybe_inplace
+    x_chunk[:] = f(x_chunk, *args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\architectures\tabpfn_v2_6.py", line 348, in forward
+    return super().forward(input)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\normalization.py", line 401, in forward
+    return F.rms_norm(x, self.normalized_shape, self.weight, self.eps)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\functional.py", line 2919, in rms_norm
+    return torch.rms_norm(input, normalized_shape, weight, eps)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+^C^C

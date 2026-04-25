@@ -1,0 +1,219 @@
+=============================================== 
+Run started at 2026/04/25 周六 15:09:27.16 
+Working directory: D:\university\GCN-TabPFN\code 
+=============================================== 
+ 
+---------- STEP 1 START 2026/04/25 周六 15:09:27.20 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset Actor --base-model h2gcn --encoder-fusion none --encoder-pretrain-head linear --prediction-head tabpfn --embedding-branch branch2 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none 
+[INFO] Step 1 completed successfully. 
+---------- STEP 1 OUTPUT BEGIN ---------- 
+Linear pretrain split: train=4560, val=1520, test=1520
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=h2gcn, hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, linkx_edge_layers=1, linkx_node_layers=1, fagcn_eps=0.1, gpr_alpha=0.1
+[Pretrain] epoch=001 loss=1.6096 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=020 loss=1.5730 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=040 loss=1.5726 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=060 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=080 loss=1.5726 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=100 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=120 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=140 loss=1.5726 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=160 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=180 loss=1.5723 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=200 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=220 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=240 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=260 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=280 loss=1.5727 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=300 loss=1.5723 train_acc=0.2586 val_acc=0.2586
+[Pretrain] selected epoch=014 val_acc=0.2612
+[Actor] embedding built after pretraining (shape=(7600, 128))
+  selected-layer embedding (layer=1/2) shape=(7600, 128) mean=-0.0014 std=0.0563 min=-0.1175 max=0.1236
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=64, add_graph_engineered_features=True
+[Actor] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=200
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=200
+Applied feature normalization: none.
+Split complete: x_train=(6080, 200), x_test=(1520, 200), num_classes=5, actual_train_test_ratio=4.0000
+TabPFN test accuracy: 0.3822
+TabPFN classification report:
+              precision    recall  f1-score   support
+
+           0     0.4274    0.3099    0.3593       171
+           1     0.2913    0.2247    0.2537       267
+           2     0.2963    0.2699    0.2825       326
+           3     0.2849    0.2865    0.2857       363
+           4     0.5227    0.7023    0.5993       393
+
+    accuracy                         0.3822      1520
+   macro avg     0.3645    0.3587    0.3561      1520
+weighted avg     0.3660    0.3822    0.3688      1520
+
+---------- STEP 1 OUTPUT END ------------ 
+---------- STEP 1 END 2026/04/25 周六 15:19:38.74 ---------- 
+ 
+---------- STEP 2 START 2026/04/25 周六 15:19:38.76 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset Actor --base-model h2gcn --encoder-fusion none --encoder-pretrain-head linear --prediction-head linear --embedding-branch branch2 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none 
+[INFO] Step 2 completed successfully. 
+---------- STEP 2 OUTPUT BEGIN ---------- 
+Linear pretrain split: train=4560, val=1520, test=1520
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=h2gcn, hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, linkx_edge_layers=1, linkx_node_layers=1, fagcn_eps=0.1, gpr_alpha=0.1
+[Pretrain] epoch=001 loss=1.6096 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=020 loss=1.5730 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=040 loss=1.5726 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=060 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=080 loss=1.5726 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=100 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=120 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=140 loss=1.5726 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=160 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=180 loss=1.5723 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=200 loss=1.5726 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=220 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=240 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=260 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=280 loss=1.5726 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=300 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] selected epoch=014 val_acc=0.2612
+[Actor] embedding built after pretraining (shape=(7600, 128))
+  selected-layer embedding (layer=1/2) shape=(7600, 128) mean=-0.0014 std=0.0563 min=-0.1175 max=0.1236
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=64, add_graph_engineered_features=True
+[Actor] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=200
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=200
+[LinearHead] epoch=001 loss=1.6912 train_acc=0.2456 val_acc=0.2533
+[LinearHead] epoch=020 loss=1.4308 train_acc=0.3649 val_acc=0.3250
+[LinearHead] epoch=040 loss=1.4088 train_acc=0.3800 val_acc=0.3263
+[LinearHead] epoch=060 loss=1.4002 train_acc=0.3796 val_acc=0.3243
+[LinearHead] epoch=080 loss=1.3953 train_acc=0.3781 val_acc=0.3263
+[LinearHead] epoch=100 loss=1.3920 train_acc=0.3785 val_acc=0.3303
+[LinearHead] epoch=120 loss=1.3894 train_acc=0.3789 val_acc=0.3309
+[LinearHead] epoch=140 loss=1.3874 train_acc=0.3800 val_acc=0.3316
+[LinearHead] epoch=160 loss=1.3857 train_acc=0.3814 val_acc=0.3316
+[LinearHead] epoch=180 loss=1.3844 train_acc=0.3800 val_acc=0.3309
+[LinearHead] epoch=200 loss=1.3832 train_acc=0.3805 val_acc=0.3303
+[LinearHead] selected epoch=018 val_acc=0.3336
+Linear-head test accuracy: 0.3171
+Linear-head classification report:
+              precision    recall  f1-score   support
+
+           0     0.0635    0.0234    0.0342       171
+           1     0.2229    0.1461    0.1765       267
+           2     0.2363    0.3436    0.2800       326
+           3     0.2989    0.2948    0.2968       363
+           4     0.4889    0.5598    0.5219       393
+
+    accuracy                         0.3171      1520
+   macro avg     0.2621    0.2735    0.2619      1520
+weighted avg     0.2947    0.3171    0.3007      1520
+
+---------- STEP 2 OUTPUT END ------------ 
+---------- STEP 2 END 2026/04/25 周六 15:19:50.72 ---------- 
+ 
+---------- STEP 3 START 2026/04/25 周六 15:19:50.74 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset Actor --base-model fagcn --encoder-fusion none --encoder-pretrain-head linear --prediction-head tabpfn --embedding-branch branch2 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none 
+[INFO] Step 3 completed successfully. 
+---------- STEP 3 OUTPUT BEGIN ---------- 
+Linear pretrain split: train=4560, val=1520, test=1520
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=fagcn, hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, linkx_edge_layers=1, linkx_node_layers=1, fagcn_eps=0.1, gpr_alpha=0.1
+[Pretrain] epoch=001 loss=1.6071 train_acc=0.2388 val_acc=0.2388
+[Pretrain] epoch=020 loss=1.5480 train_acc=0.2993 val_acc=0.2974
+[Pretrain] epoch=040 loss=1.4871 train_acc=0.3643 val_acc=0.3520
+[Pretrain] epoch=060 loss=1.4323 train_acc=0.3737 val_acc=0.3539
+[Pretrain] epoch=080 loss=1.4167 train_acc=0.3625 val_acc=0.3382
+[Pretrain] epoch=100 loss=1.4045 train_acc=0.3537 val_acc=0.3243
+[Pretrain] epoch=120 loss=1.4032 train_acc=0.3568 val_acc=0.3197
+[Pretrain] epoch=140 loss=1.4011 train_acc=0.3384 val_acc=0.3178
+[Pretrain] epoch=160 loss=1.3905 train_acc=0.3487 val_acc=0.3191
+[Pretrain] epoch=180 loss=1.4022 train_acc=0.3276 val_acc=0.3105
+[Pretrain] epoch=200 loss=1.3937 train_acc=0.3349 val_acc=0.3125
+[Pretrain] epoch=220 loss=1.3920 train_acc=0.3336 val_acc=0.3053
+[Pretrain] epoch=240 loss=1.3852 train_acc=0.3300 val_acc=0.3125
+[Pretrain] epoch=260 loss=1.3944 train_acc=0.3303 val_acc=0.3164
+[Pretrain] epoch=280 loss=1.3972 train_acc=0.3325 val_acc=0.3151
+[Pretrain] epoch=300 loss=1.3882 train_acc=0.3366 val_acc=0.3164
+[Pretrain] selected epoch=035 val_acc=0.3697
+[Actor] embedding built after pretraining (shape=(7600, 128))
+  selected-layer embedding (layer=1/2) shape=(7600, 128) mean=-0.0035 std=0.0602 min=-0.1426 max=0.1408
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=64, add_graph_engineered_features=True
+[Actor] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=200
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=200
+Applied feature normalization: none.
+Split complete: x_train=(6080, 200), x_test=(1520, 200), num_classes=5, actual_train_test_ratio=4.0000
+TabPFN test accuracy: 0.3882
+TabPFN classification report:
+              precision    recall  f1-score   support
+
+           0     0.4420    0.3567    0.3948       171
+           1     0.3008    0.2884    0.2945       267
+           2     0.2791    0.2209    0.2466       326
+           3     0.2865    0.2975    0.2919       363
+           4     0.5540    0.6921    0.6154       393
+
+    accuracy                         0.3882      1520
+   macro avg     0.3725    0.3711    0.3686      1520
+weighted avg     0.3741    0.3882    0.3778      1520
+
+---------- STEP 3 OUTPUT END ------------ 
+---------- STEP 3 END 2026/04/25 周六 15:29:58.42 ---------- 
+ 
+---------- STEP 4 START 2026/04/25 周六 15:29:58.44 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset Actor --base-model fagcn --encoder-fusion none --encoder-pretrain-head linear --prediction-head linear --embedding-branch branch2 --pre-agg-pca-dim 64 --num-layers 2 --dropout 0.5 --split-source random --train-test-ratio 4 --val-size 0.25 --pretrain-epochs 300  --device cuda --tabpfn-device cuda --feature-normalization none 
+[INFO] Step 4 completed successfully. 
+---------- STEP 4 OUTPUT BEGIN ---------- 
+Linear pretrain split: train=4560, val=1520, test=1520
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=fagcn, hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, linkx_edge_layers=1, linkx_node_layers=1, fagcn_eps=0.1, gpr_alpha=0.1
+[Pretrain] epoch=001 loss=1.6071 train_acc=0.2388 val_acc=0.2388
+[Pretrain] epoch=020 loss=1.5480 train_acc=0.2993 val_acc=0.2974
+[Pretrain] epoch=040 loss=1.4871 train_acc=0.3640 val_acc=0.3520
+[Pretrain] epoch=060 loss=1.4320 train_acc=0.3675 val_acc=0.3454
+[Pretrain] epoch=080 loss=1.4169 train_acc=0.3621 val_acc=0.3401
+[Pretrain] epoch=100 loss=1.4048 train_acc=0.3513 val_acc=0.3224
+[Pretrain] epoch=120 loss=1.4044 train_acc=0.3636 val_acc=0.3250
+[Pretrain] epoch=140 loss=1.4031 train_acc=0.3305 val_acc=0.3092
+[Pretrain] epoch=160 loss=1.3945 train_acc=0.3412 val_acc=0.3164
+[Pretrain] epoch=180 loss=1.4019 train_acc=0.3285 val_acc=0.3125
+[Pretrain] epoch=200 loss=1.3935 train_acc=0.3338 val_acc=0.3145
+[Pretrain] epoch=220 loss=1.3938 train_acc=0.3307 val_acc=0.3066
+[Pretrain] epoch=240 loss=1.3852 train_acc=0.3314 val_acc=0.3145
+[Pretrain] epoch=260 loss=1.3908 train_acc=0.3434 val_acc=0.3191
+[Pretrain] epoch=280 loss=1.3964 train_acc=0.3232 val_acc=0.3079
+[Pretrain] epoch=300 loss=1.3903 train_acc=0.3498 val_acc=0.3230
+[Pretrain] selected epoch=035 val_acc=0.3697
+[Actor] embedding built after pretraining (shape=(7600, 128))
+  selected-layer embedding (layer=1/2) shape=(7600, 128) mean=-0.0035 std=0.0602 min=-0.1425 max=0.1408
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=64, add_graph_engineered_features=True
+[Actor] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=200
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=200
+[LinearHead] epoch=001 loss=1.7740 train_acc=0.2158 val_acc=0.2145
+[LinearHead] epoch=020 loss=1.3777 train_acc=0.3757 val_acc=0.3395
+[LinearHead] epoch=040 loss=1.3361 train_acc=0.3993 val_acc=0.3599
+[LinearHead] epoch=060 loss=1.3187 train_acc=0.4070 val_acc=0.3691
+[LinearHead] epoch=080 loss=1.3092 train_acc=0.4125 val_acc=0.3783
+[LinearHead] epoch=100 loss=1.3041 train_acc=0.4160 val_acc=0.3783
+[LinearHead] epoch=120 loss=1.3014 train_acc=0.4173 val_acc=0.3816
+[LinearHead] epoch=140 loss=1.2998 train_acc=0.4180 val_acc=0.3809
+[LinearHead] epoch=160 loss=1.2989 train_acc=0.4189 val_acc=0.3829
+[LinearHead] epoch=180 loss=1.2983 train_acc=0.4189 val_acc=0.3836
+[LinearHead] epoch=200 loss=1.2979 train_acc=0.4200 val_acc=0.3836
+[LinearHead] selected epoch=169 val_acc=0.3842
+Linear-head test accuracy: 0.3711
+Linear-head classification report:
+              precision    recall  f1-score   support
+
+           0     0.3474    0.1930    0.2481       171
+           1     0.2836    0.2846    0.2841       267
+           2     0.3098    0.2822    0.2953       326
+           3     0.2927    0.2975    0.2951       363
+           4     0.5193    0.6489    0.5769       393
+
+    accuracy                         0.3711      1520
+   macro avg     0.3505    0.3412    0.3399      1520
+weighted avg     0.3595    0.3711    0.3608      1520
+
+---------- STEP 4 OUTPUT END ------------ 
+---------- STEP 4 END 2026/04/25 周六 15:30:11.30 ---------- 
+[INFO] All commands finished successfully. 
+Run finished at 2026/04/25 周六 15:30:11.32 
+=============================================== 

@@ -1,0 +1,61 @@
+D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\sklearn\metrics\_classification.py:1833: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\sklearn\metrics\_classification.py:1833: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\sklearn\metrics\_classification.py:1833: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+Linear pretrain split: train=8250, val=2751, test=2751
+Split setting: source=random, requested_train_test_ratio=4.0000
+Backbone setting: base_model=gcn, hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, linkx_edge_layers=1, linkx_node_layers=1, fagcn_eps=0.1, gpr_alpha=0.1
+[Pretrain] epoch=001 loss=2.3045 train_acc=0.1629 val_acc=0.1679
+[Pretrain] epoch=020 loss=1.8732 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=040 loss=1.7786 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=060 loss=1.4245 train_acc=0.5019 val_acc=0.5056
+[Pretrain] epoch=080 loss=1.3137 train_acc=0.5372 val_acc=0.5307
+[Pretrain] epoch=100 loss=1.2520 train_acc=0.6128 val_acc=0.6038
+[Pretrain] epoch=120 loss=1.1355 train_acc=0.6379 val_acc=0.6347
+[Pretrain] epoch=140 loss=0.9613 train_acc=0.6864 val_acc=0.6834
+[Pretrain] epoch=160 loss=0.7928 train_acc=0.7265 val_acc=0.7237
+[Pretrain] epoch=180 loss=0.6873 train_acc=0.7527 val_acc=0.7419
+[Pretrain] epoch=200 loss=0.6544 train_acc=0.7979 val_acc=0.7928
+[Pretrain] epoch=220 loss=0.5816 train_acc=0.8318 val_acc=0.8212
+[Pretrain] epoch=240 loss=0.5444 train_acc=0.8376 val_acc=0.8226
+[Pretrain] epoch=260 loss=0.5287 train_acc=0.8436 val_acc=0.8292
+[Pretrain] epoch=280 loss=0.5235 train_acc=0.8456 val_acc=0.8284
+[Pretrain] epoch=300 loss=0.5191 train_acc=0.8480 val_acc=0.8346
+[Pretrain] selected epoch=293 val_acc=0.8390
+[Computers] embedding built after pretraining (shape=(13752, 128))
+  selected-layer embedding (layer=1/2) shape=(13752, 128) mean=0.0009 std=0.0226 min=-0.1190 max=0.2400
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=0, add_graph_engineered_features=True
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=136
+[LinearHead] epoch=001 loss=3.6861 train_acc=0.1783 val_acc=0.1708
+[LinearHead] epoch=020 loss=1.3777 train_acc=0.6313 val_acc=0.6303
+[LinearHead] epoch=040 loss=0.9415 train_acc=0.7359 val_acc=0.7274
+[LinearHead] epoch=060 loss=0.7511 train_acc=0.7941 val_acc=0.7866
+[LinearHead] epoch=080 loss=0.6592 train_acc=0.8039 val_acc=0.7939
+[LinearHead] epoch=100 loss=0.6027 train_acc=0.8222 val_acc=0.8117
+[LinearHead] epoch=120 loss=0.5635 train_acc=0.8321 val_acc=0.8186
+[LinearHead] epoch=140 loss=0.5344 train_acc=0.8430 val_acc=0.8281
+[LinearHead] epoch=160 loss=0.5120 train_acc=0.8492 val_acc=0.8342
+[LinearHead] epoch=180 loss=0.4941 train_acc=0.8544 val_acc=0.8375
+[LinearHead] epoch=200 loss=0.4797 train_acc=0.8572 val_acc=0.8382
+[LinearHead] selected epoch=185 val_acc=0.8382
+Linear-head test accuracy: 0.8459
+Linear-head classification report:
+              precision    recall  f1-score   support
+
+           0     0.8958    0.4943    0.6370        87
+           1     0.8973    0.8555    0.8759       429
+           2     0.8688    0.9823    0.9221       283
+           3     0.8592    0.5648    0.6816       108
+           4     0.8561    0.9225    0.8881      1032
+           5     0.9455    0.8387    0.8889        62
+           6     0.0000    0.0000    0.0000        97
+           7     0.9367    0.9024    0.9193       164
+           8     0.7249    0.8863    0.7975       431
+           9     0.8627    0.7586    0.8073        58
+
+    accuracy                         0.8459      2751
+   macro avg     0.7847    0.7205    0.7418      2751
+weighted avg     0.8214    0.8459    0.8283      2751
+
