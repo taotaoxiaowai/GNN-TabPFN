@@ -1,0 +1,99 @@
+Linear pretrain split: train=8250, val=2751, test=2751
+Split setting: source=random, requested_train_test_ratio=4.0000
+Fusion setting: encoder_fusion=weighted, models=['gcn', 'gat', 'sage'], hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, weighted_fusion_train_strategy=two-stage
+Pretraining encoder: gcn
+[Pretrain] epoch=001 loss=2.3120 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=020 loss=1.8746 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=040 loss=1.7246 train_acc=0.3776 val_acc=0.3773
+[Pretrain] epoch=060 loss=1.3702 train_acc=0.5048 val_acc=0.4973
+[Pretrain] epoch=080 loss=1.2712 train_acc=0.5474 val_acc=0.5416
+[Pretrain] epoch=100 loss=1.1900 train_acc=0.6189 val_acc=0.6125
+[Pretrain] epoch=120 loss=1.0648 train_acc=0.6481 val_acc=0.6419
+[Pretrain] epoch=140 loss=0.9111 train_acc=0.6913 val_acc=0.6925
+[Pretrain] epoch=160 loss=0.7973 train_acc=0.7159 val_acc=0.7197
+[Pretrain] epoch=180 loss=0.7366 train_acc=0.7793 val_acc=0.7746
+[Pretrain] epoch=200 loss=0.6826 train_acc=0.7907 val_acc=0.7819
+[Pretrain] epoch=220 loss=0.6413 train_acc=0.7959 val_acc=0.7863
+[Pretrain] epoch=240 loss=0.6081 train_acc=0.8159 val_acc=0.8084
+[Pretrain] epoch=260 loss=0.5587 train_acc=0.8320 val_acc=0.8193
+[Pretrain] epoch=280 loss=0.5440 train_acc=0.8373 val_acc=0.8186
+[Pretrain] epoch=300 loss=0.5311 train_acc=0.8455 val_acc=0.8252
+[Pretrain] selected epoch=288 val_acc=0.8321
+  gcn embedding shape: (13752, 128)
+Pretraining encoder: gat
+[Pretrain] epoch=001 loss=2.2979 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=020 loss=1.5718 train_acc=0.5079 val_acc=0.5067
+[Pretrain] epoch=040 loss=1.3853 train_acc=0.4678 val_acc=0.4700
+[Pretrain] epoch=060 loss=1.2185 train_acc=0.6434 val_acc=0.6387
+[Pretrain] epoch=080 loss=0.9518 train_acc=0.7211 val_acc=0.7121
+[Pretrain] epoch=100 loss=1.0305 train_acc=0.6600 val_acc=0.6594
+[Pretrain] epoch=120 loss=0.8280 train_acc=0.7469 val_acc=0.7448
+[Pretrain] epoch=140 loss=0.6805 train_acc=0.8104 val_acc=0.8037
+[Pretrain] epoch=160 loss=1.2422 train_acc=0.5882 val_acc=0.5831
+[Pretrain] epoch=180 loss=0.7220 train_acc=0.7931 val_acc=0.7935
+[Pretrain] epoch=200 loss=0.6459 train_acc=0.8205 val_acc=0.8172
+[Pretrain] epoch=220 loss=0.6183 train_acc=0.8292 val_acc=0.8179
+[Pretrain] epoch=240 loss=0.6015 train_acc=0.8411 val_acc=0.8295
+[Pretrain] epoch=260 loss=0.6028 train_acc=0.8342 val_acc=0.8182
+[Pretrain] epoch=280 loss=0.5724 train_acc=0.8495 val_acc=0.8335
+[Pretrain] epoch=300 loss=0.5855 train_acc=0.8398 val_acc=0.8281
+[Pretrain] selected epoch=281 val_acc=0.8408
+  gat embedding shape: (13752, 128)
+Pretraining encoder: sage
+[Pretrain] epoch=001 loss=2.2972 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=020 loss=1.7231 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=040 loss=1.1913 train_acc=0.6610 val_acc=0.6609
+[Pretrain] epoch=060 loss=0.8164 train_acc=0.7305 val_acc=0.7325
+[Pretrain] epoch=080 loss=0.7257 train_acc=0.7602 val_acc=0.7470
+[Pretrain] epoch=100 loss=0.6063 train_acc=0.7927 val_acc=0.7757
+[Pretrain] epoch=120 loss=0.5533 train_acc=0.8264 val_acc=0.8077
+[Pretrain] epoch=140 loss=0.4974 train_acc=0.8556 val_acc=0.8299
+[Pretrain] epoch=160 loss=0.4755 train_acc=0.8827 val_acc=0.8546
+[Pretrain] epoch=180 loss=0.4198 train_acc=0.8935 val_acc=0.8630
+[Pretrain] epoch=200 loss=0.4353 train_acc=0.8737 val_acc=0.8430
+[Pretrain] epoch=220 loss=0.3910 train_acc=0.8897 val_acc=0.8586
+[Pretrain] epoch=240 loss=0.3782 train_acc=0.9057 val_acc=0.8688
+[Pretrain] epoch=260 loss=0.3704 train_acc=0.9088 val_acc=0.8753
+[Pretrain] epoch=280 loss=0.3622 train_acc=0.8942 val_acc=0.8593
+[Pretrain] epoch=300 loss=0.3473 train_acc=0.9127 val_acc=0.8760
+[Pretrain] selected epoch=281 val_acc=0.8779
+  sage embedding shape: (13752, 128)
+[FusionPretrain] epoch=001 loss=2.3168 train_acc=0.0420 weights=[0.3289, 0.3355, 0.3355]
+[FusionPretrain] epoch=020 loss=1.3058 train_acc=0.7167 weights=[0.2821, 0.2906, 0.4273]
+[FusionPretrain] epoch=040 loss=0.8575 train_acc=0.7667 weights=[0.2244, 0.2333, 0.5423]
+[FusionPretrain] epoch=060 loss=0.6156 train_acc=0.8174 weights=[0.1739, 0.1782, 0.6479]
+[FusionPretrain] epoch=080 loss=0.4846 train_acc=0.8661 weights=[0.1364, 0.1339, 0.7296]
+[FusionPretrain] epoch=100 loss=0.4150 train_acc=0.8840 weights=[0.1112, 0.1046, 0.7842]
+[FusionPretrain] epoch=120 loss=0.3754 train_acc=0.8955 weights=[0.0944, 0.0858, 0.8198]
+[FusionPretrain] epoch=140 loss=0.3512 train_acc=0.9022 weights=[0.0828, 0.0732, 0.844]
+[FusionPretrain] epoch=160 loss=0.3354 train_acc=0.9054 weights=[0.0743, 0.0643, 0.8613]
+[FusionPretrain] epoch=180 loss=0.3246 train_acc=0.9066 weights=[0.0679, 0.0578, 0.8743]
+[FusionPretrain] epoch=200 loss=0.3169 train_acc=0.9062 weights=[0.0629, 0.0528, 0.8843]
+[Computers] fused embedding built (shape=(13752, 128))
+  fused embedding stats shape=(13752, 128) mean=-0.0041 std=0.1269 min=-0.6919 max=0.8298
+  fusion weights ['gcn', 'gat', 'sage'] = [0.0629, 0.0528, 0.8843]
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=0, add_graph_engineered_features=True
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=136
+Applied feature normalization: none.
+Split complete: x_train=(11001, 136), x_test=(2751, 136), num_classes=10, actual_train_test_ratio=3.9989
+TabPFN ensemble-selection enabled: sources=['fused_weighted', 'gat', 'gcn', 'sage'], val_size=0.2, candidates_per_table=2, context_size=fit-full, colsample=[1.0, 1.0], max_selected=32, n_jobs=1
+TabPFN ensemble-selection test accuracy: 0.9171
+TabPFN ensemble-selection summary: fit_size=8800, val_size=2201, num_candidates=8, num_selected=3, table_weights={'fused_weighted': 0.3333333333333333, 'gcn': 0.3333333333333333, 'sage': 0.3333333333333333}
+TabPFN ensemble-selection classification report:
+              precision    recall  f1-score   support
+
+           0     0.9167    0.8851    0.9006        87
+           1     0.9452    0.9254    0.9352       429
+           2     0.9233    0.9788    0.9503       283
+           3     0.9099    0.9352    0.9224       108
+           4     0.9395    0.9322    0.9358      1032
+           5     0.9531    0.9839    0.9683        62
+           6     0.8219    0.6186    0.7059        97
+           7     0.9503    0.9329    0.9415       164
+           8     0.8426    0.8817    0.8617       431
+           9     0.8730    0.9483    0.9091        58
+
+    accuracy                         0.9171      2751
+   macro avg     0.9076    0.9022    0.9031      2751
+weighted avg     0.9170    0.9171    0.9163      2751
+

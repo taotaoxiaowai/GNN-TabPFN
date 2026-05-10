@@ -1,0 +1,149 @@
+Linear pretrain split: train=8250, val=2751, test=2751
+Split setting: source=random, requested_train_test_ratio=4.0000
+Fusion setting: encoder_fusion=weighted, models=['gcn', 'gat', 'sage'], hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, weighted_fusion_train_strategy=two-stage
+Pretraining encoder: gcn
+[Pretrain] epoch=001 loss=2.3120 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=020 loss=1.8746 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=040 loss=1.7246 train_acc=0.3776 val_acc=0.3773
+[Pretrain] epoch=060 loss=1.3701 train_acc=0.5050 val_acc=0.4969
+[Pretrain] epoch=080 loss=1.2698 train_acc=0.5476 val_acc=0.5423
+[Pretrain] epoch=100 loss=1.1923 train_acc=0.6193 val_acc=0.6118
+[Pretrain] epoch=120 loss=1.0652 train_acc=0.6476 val_acc=0.6423
+[Pretrain] epoch=140 loss=0.9118 train_acc=0.6912 val_acc=0.6928
+[Pretrain] epoch=160 loss=0.7975 train_acc=0.7155 val_acc=0.7205
+[Pretrain] epoch=180 loss=0.7342 train_acc=0.7795 val_acc=0.7750
+[Pretrain] epoch=200 loss=0.6819 train_acc=0.7908 val_acc=0.7855
+[Pretrain] epoch=220 loss=0.6444 train_acc=0.7954 val_acc=0.7903
+[Pretrain] epoch=240 loss=0.6083 train_acc=0.8159 val_acc=0.8066
+[Pretrain] epoch=260 loss=0.5592 train_acc=0.8278 val_acc=0.8128
+[Pretrain] epoch=280 loss=0.5458 train_acc=0.8376 val_acc=0.8212
+[Pretrain] epoch=300 loss=0.5359 train_acc=0.8457 val_acc=0.8262
+[Pretrain] selected epoch=299 val_acc=0.8313
+  gcn embedding shape: (13752, 128)
+Pretraining encoder: gat
+[Pretrain] epoch=001 loss=2.2979 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=020 loss=1.5713 train_acc=0.5061 val_acc=0.5053
+[Pretrain] epoch=040 loss=1.3764 train_acc=0.4596 val_acc=0.4631
+[Pretrain] epoch=060 loss=1.2181 train_acc=0.5908 val_acc=0.5892
+[Pretrain] epoch=080 loss=1.0830 train_acc=0.7177 val_acc=0.7176
+[Pretrain] epoch=100 loss=0.7466 train_acc=0.7604 val_acc=0.7605
+[Pretrain] epoch=120 loss=0.6958 train_acc=0.8103 val_acc=0.8066
+[Pretrain] epoch=140 loss=0.6367 train_acc=0.8338 val_acc=0.8222
+[Pretrain] epoch=160 loss=0.8720 train_acc=0.7185 val_acc=0.7248
+[Pretrain] epoch=180 loss=0.7023 train_acc=0.8005 val_acc=0.7964
+[Pretrain] epoch=200 loss=0.6284 train_acc=0.8247 val_acc=0.8146
+[Pretrain] epoch=220 loss=0.6099 train_acc=0.8274 val_acc=0.8204
+[Pretrain] epoch=240 loss=0.5971 train_acc=0.8400 val_acc=0.8284
+[Pretrain] epoch=260 loss=1.8857 train_acc=0.7925 val_acc=0.7852
+[Pretrain] epoch=280 loss=0.6409 train_acc=0.7964 val_acc=0.7957
+[Pretrain] epoch=300 loss=0.6131 train_acc=0.8361 val_acc=0.8255
+[Pretrain] selected epoch=248 val_acc=0.8324
+  gat embedding shape: (13752, 128)
+Pretraining encoder: sage
+[Pretrain] epoch=001 loss=2.2972 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=020 loss=1.7231 train_acc=0.3750 val_acc=0.3751
+[Pretrain] epoch=040 loss=1.1913 train_acc=0.6610 val_acc=0.6609
+[Pretrain] epoch=060 loss=0.8165 train_acc=0.7307 val_acc=0.7325
+[Pretrain] epoch=080 loss=0.7255 train_acc=0.7605 val_acc=0.7470
+[Pretrain] epoch=100 loss=0.6058 train_acc=0.7926 val_acc=0.7757
+[Pretrain] epoch=120 loss=0.5539 train_acc=0.8261 val_acc=0.8077
+[Pretrain] epoch=140 loss=0.4988 train_acc=0.8558 val_acc=0.8299
+[Pretrain] epoch=160 loss=0.4661 train_acc=0.8875 val_acc=0.8597
+[Pretrain] epoch=180 loss=0.4206 train_acc=0.8810 val_acc=0.8491
+[Pretrain] epoch=200 loss=0.3966 train_acc=0.8978 val_acc=0.8662
+[Pretrain] epoch=220 loss=0.3864 train_acc=0.9011 val_acc=0.8684
+[Pretrain] epoch=240 loss=0.3746 train_acc=0.9001 val_acc=0.8630
+[Pretrain] epoch=260 loss=0.4263 train_acc=0.8555 val_acc=0.8172
+[Pretrain] epoch=280 loss=0.3716 train_acc=0.8897 val_acc=0.8582
+[Pretrain] epoch=300 loss=0.3535 train_acc=0.9072 val_acc=0.8746
+[Pretrain] selected epoch=256 val_acc=0.8782
+  sage embedding shape: (13752, 128)
+[FusionPretrain] epoch=001 loss=2.3174 train_acc=0.0394 weights=[0.3311, 0.3311, 0.3378]
+[FusionPretrain] epoch=020 loss=1.2947 train_acc=0.7192 weights=[0.284, 0.286, 0.43]
+[FusionPretrain] epoch=040 loss=0.8494 train_acc=0.7675 weights=[0.2258, 0.2293, 0.5448]
+[FusionPretrain] epoch=060 loss=0.6115 train_acc=0.8161 weights=[0.1755, 0.175, 0.6496]
+[FusionPretrain] epoch=080 loss=0.4836 train_acc=0.8613 weights=[0.1382, 0.1314, 0.7304]
+[FusionPretrain] epoch=100 loss=0.4159 train_acc=0.8836 weights=[0.113, 0.1026, 0.7844]
+[FusionPretrain] epoch=120 loss=0.3775 train_acc=0.8961 weights=[0.0962, 0.0841, 0.8196]
+[FusionPretrain] epoch=140 loss=0.3539 train_acc=0.9020 weights=[0.0846, 0.0718, 0.8436]
+[FusionPretrain] epoch=160 loss=0.3385 train_acc=0.9052 weights=[0.076, 0.0631, 0.8608]
+[FusionPretrain] epoch=180 loss=0.3279 train_acc=0.9060 weights=[0.0696, 0.0567, 0.8737]
+[FusionPretrain] epoch=200 loss=0.3203 train_acc=0.9060 weights=[0.0646, 0.0518, 0.8836]
+[Computers] fused embedding built (shape=(13752, 128))
+  fused embedding stats shape=(13752, 128) mean=-0.0041 std=0.1292 min=-0.7124 max=0.8426
+  fusion weights ['gcn', 'gat', 'sage'] = [0.0646, 0.0518, 0.8836]
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=0, add_graph_engineered_features=True
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=136
+Applied feature normalization: none.
+Split complete: x_train=(11001, 136), x_test=(2751, 136), num_classes=10, actual_train_test_ratio=3.9989
+TabPFN ensemble-selection enabled: sources=['fused_weighted', 'gat', 'gcn', 'sage'], val_size=0.2, candidates_per_table=2, context_size=fit-full, colsample=[1.0, 1.0], max_selected=32, n_jobs=1
+Traceback (most recent call last):
+  File "D:\university\GCN-TabPFN\code\examples\train_gcn_planetoid.py", line 1126, in <module>
+    main()
+  File "D:\university\GCN-TabPFN\code\examples\train_gcn_planetoid.py", line 966, in main
+    result = run_tabpfn_ensemble_selection_classifier(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\university\GCN-TabPFN\code\src\dl_research_kit\inference\tabpfn.py", line 350, in run_tabpfn_ensemble_selection_classifier
+    candidates = [_single_candidate(x) for x in packed]
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\university\GCN-TabPFN\code\src\dl_research_kit\inference\tabpfn.py", line 350, in <listcomp>
+    candidates = [_single_candidate(x) for x in packed]
+                  ^^^^^^^^^^^^^^^^^^^^
+  File "D:\university\GCN-TabPFN\code\src\dl_research_kit\inference\tabpfn.py", line 324, in _single_candidate
+    test_probs = clf.predict_proba(x_test)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 321, in wrapper
+    return _safe_call_with_telemetry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn_common_utils\telemetry\core\decorators.py", line 365, in _safe_call_with_telemetry
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\classifier.py", line 1171, in predict_proba
+    return self._predict_proba(X)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\classifier.py", line 1185, in _predict_proba
+    self._raw_predict(X, return_logits=False).float().detach().cpu().numpy()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\classifier.py", line 1093, in _raw_predict
+    return self.forward(
+           ^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\classifier.py", line 1420, in forward
+    for output, config in self.executor_.iter_outputs(
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\inference.py", line 429, in iter_outputs
+    for config, output in zip(self.ensemble_preprocessor.configs, timed_outputs):
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\inference.py", line 57, in __next__
+    value = next(self._inner)
+            ^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\parallel_execute.py", line 53, in parallel_execute
+    yield from _execute_in_current_thread(devices[0], functions)
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\parallel_execute.py", line 62, in _execute_in_current_thread
+    yield function(device=device)
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\inference.py", line 478, in _call_model
+    return model(
+           ^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\architectures\tabpfn_v2_6.py", line 688, in forward
+    x_BRCD = block(
+             ^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\architectures\tabpfn_v2_6.py", line 459, in forward
+    x_BCRE = chunked_evaluate_maybe_inplace(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\evns\gcn_tabpfn_py11\Lib\site-packages\tabpfn\architectures\shared\chunked_evaluate.py", line 59, in chunked_evaluate_maybe_inplace
+    x_chunk.add_(f(x_chunk, *args, **kwargs))
+KeyboardInterrupt
+^C^C

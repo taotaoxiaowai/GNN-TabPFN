@@ -1,0 +1,373 @@
+=============================================== 
+Run started at 2026/05/08 周五 15:06:34.07 
+Working directory: D:\university\GCN-TabPFN\code 
+=============================================== 
+ 
+---------- STEP 1 START 2026/05/08 周五 15:06:34.11 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset chameleon --encoder-fusion weighted --weighted-fusion-train-strategy two-stage --prediction-head tabpfn-ensemble-selection --embedding-branch branch2 --train-test-ratio 4 --val-size 0.25 --split-source random --pretrain-epochs 300 --fusion-epochs 200 --device cuda --tabpfn-device cuda --feature-normalization none --tabpfn-ens-candidates-per-table 2 --tabpfn-ens-colsample-min-rate 1.0 --tabpfn-ens-sources all-backbones 
+[INFO] Step 1 completed successfully. 
+---------- STEP 1 OUTPUT BEGIN ---------- 
+[INFO] Dataset 'chameleon' is heterophilous. Replacing base backbone 'gcn' -> 'linkx'.
+Linear pretrain split: train=1365, val=456, test=456
+Split setting: source=random, requested_train_test_ratio=4.0000
+Fusion setting: encoder_fusion=weighted, models=['linkx', 'fagcn', 'gprgnn', 'h2gcn'], hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, weighted_fusion_train_strategy=two-stage
+Pretraining encoder: linkx
+[Pretrain] epoch=001 loss=1.6737 train_acc=0.1949 val_acc=0.1820
+[Pretrain] epoch=020 loss=0.3796 train_acc=0.8740 val_acc=0.4079
+[Pretrain] epoch=040 loss=0.2529 train_acc=0.9201 val_acc=0.4320
+[Pretrain] epoch=060 loss=0.1667 train_acc=0.9370 val_acc=0.4145
+[Pretrain] epoch=080 loss=0.1535 train_acc=0.9304 val_acc=0.4583
+[Pretrain] epoch=100 loss=0.1380 train_acc=0.9407 val_acc=0.4430
+[Pretrain] epoch=120 loss=0.1440 train_acc=0.9451 val_acc=0.4167
+[Pretrain] epoch=140 loss=0.1480 train_acc=0.9451 val_acc=0.4539
+[Pretrain] epoch=160 loss=0.1124 train_acc=0.9509 val_acc=0.4386
+[Pretrain] epoch=180 loss=0.1338 train_acc=0.9502 val_acc=0.4386
+[Pretrain] epoch=200 loss=0.1049 train_acc=0.9531 val_acc=0.4649
+[Pretrain] epoch=220 loss=0.2310 train_acc=0.8967 val_acc=0.4386
+[Pretrain] epoch=240 loss=0.1149 train_acc=0.9480 val_acc=0.4474
+[Pretrain] epoch=260 loss=0.0980 train_acc=0.9568 val_acc=0.4583
+[Pretrain] epoch=280 loss=0.1095 train_acc=0.9560 val_acc=0.4276
+[Pretrain] epoch=300 loss=0.1447 train_acc=0.9458 val_acc=0.4583
+[Pretrain] selected epoch=136 val_acc=0.4912
+  linkx embedding shape: (2277, 128)
+Pretraining encoder: fagcn
+[Pretrain] epoch=001 loss=1.6082 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=020 loss=1.6050 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=040 loss=1.6050 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=060 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=080 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=100 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=120 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=140 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=160 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=180 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=200 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=220 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=240 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=260 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=280 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=300 loss=1.6051 train_acc=0.2286 val_acc=0.2303
+[Pretrain] selected epoch=001 val_acc=0.2303
+  fagcn embedding shape: (2277, 128)
+Pretraining encoder: gprgnn
+[Pretrain] epoch=001 loss=1.6204 train_acc=0.2007 val_acc=0.1996
+[Pretrain] epoch=020 loss=1.3184 train_acc=0.5289 val_acc=0.3509
+[Pretrain] epoch=040 loss=1.0920 train_acc=0.7458 val_acc=0.3333
+[Pretrain] epoch=060 loss=0.7522 train_acc=0.8462 val_acc=0.3575
+[Pretrain] epoch=080 loss=0.6057 train_acc=0.9245 val_acc=0.3575
+[Pretrain] epoch=100 loss=0.4961 train_acc=0.9370 val_acc=0.4189
+[Pretrain] epoch=120 loss=0.4661 train_acc=0.9392 val_acc=0.4539
+[Pretrain] epoch=140 loss=0.4585 train_acc=0.9458 val_acc=0.4627
+[Pretrain] epoch=160 loss=0.4850 train_acc=0.9414 val_acc=0.4649
+[Pretrain] epoch=180 loss=0.4791 train_acc=0.9385 val_acc=0.4496
+[Pretrain] epoch=200 loss=0.4698 train_acc=0.9436 val_acc=0.4583
+[Pretrain] epoch=220 loss=0.4376 train_acc=0.9326 val_acc=0.4671
+[Pretrain] epoch=240 loss=0.4401 train_acc=0.9399 val_acc=0.4583
+[Pretrain] epoch=260 loss=0.4301 train_acc=0.9429 val_acc=0.4825
+[Pretrain] epoch=280 loss=0.4380 train_acc=0.9421 val_acc=0.4496
+[Pretrain] epoch=300 loss=0.4608 train_acc=0.9407 val_acc=0.4825
+[Pretrain] selected epoch=289 val_acc=0.4934
+  gprgnn embedding shape: (2277, 128)
+Pretraining encoder: h2gcn
+[Pretrain] epoch=001 loss=1.6104 train_acc=0.2286 val_acc=0.2303
+[Pretrain] epoch=020 loss=1.5638 train_acc=0.2908 val_acc=0.2829
+[Pretrain] epoch=040 loss=1.5184 train_acc=0.3114 val_acc=0.3070
+[Pretrain] epoch=060 loss=1.4816 train_acc=0.3385 val_acc=0.3114
+[Pretrain] epoch=080 loss=1.4607 train_acc=0.3538 val_acc=0.2961
+[Pretrain] epoch=100 loss=1.4473 train_acc=0.3568 val_acc=0.3070
+[Pretrain] epoch=120 loss=1.4462 train_acc=0.3509 val_acc=0.3136
+[Pretrain] epoch=140 loss=1.4308 train_acc=0.3692 val_acc=0.3158
+[Pretrain] epoch=160 loss=1.4209 train_acc=0.3758 val_acc=0.3180
+[Pretrain] epoch=180 loss=1.4095 train_acc=0.3853 val_acc=0.3180
+[Pretrain] epoch=200 loss=1.4208 train_acc=0.3941 val_acc=0.3136
+[Pretrain] epoch=220 loss=1.3979 train_acc=0.3861 val_acc=0.3268
+[Pretrain] epoch=240 loss=1.3817 train_acc=0.3934 val_acc=0.3136
+[Pretrain] epoch=260 loss=1.3861 train_acc=0.3919 val_acc=0.3114
+[Pretrain] epoch=280 loss=1.3799 train_acc=0.3934 val_acc=0.3070
+[Pretrain] epoch=300 loss=1.3801 train_acc=0.3832 val_acc=0.3158
+[Pretrain] selected epoch=211 val_acc=0.3355
+  h2gcn embedding shape: (2277, 128)
+[FusionPretrain] epoch=001 loss=1.7461 train_acc=0.1631 weights=[0.2463, 0.2512, 0.2512, 0.2512]
+[FusionPretrain] epoch=020 loss=0.6102 train_acc=0.8254 weights=[0.2912, 0.2363, 0.2363, 0.2362]
+[FusionPretrain] epoch=040 loss=0.5733 train_acc=0.8287 weights=[0.2565, 0.2476, 0.2488, 0.2471]
+[FusionPretrain] epoch=060 loss=0.5603 train_acc=0.8342 weights=[0.2436, 0.2492, 0.2589, 0.2484]
+[FusionPretrain] epoch=080 loss=0.5495 train_acc=0.8375 weights=[0.2452, 0.2424, 0.2709, 0.2415]
+[FusionPretrain] epoch=100 loss=0.5379 train_acc=0.8380 weights=[0.2424, 0.2324, 0.2935, 0.2317]
+[FusionPretrain] epoch=120 loss=0.5241 train_acc=0.8380 weights=[0.2376, 0.2174, 0.3281, 0.2169]
+[FusionPretrain] epoch=140 loss=0.5076 train_acc=0.8407 weights=[0.229, 0.1976, 0.3761, 0.1973]
+[FusionPretrain] epoch=160 loss=0.4896 train_acc=0.8418 weights=[0.2161, 0.1746, 0.4349, 0.1744]
+[FusionPretrain] epoch=180 loss=0.4728 train_acc=0.8429 weights=[0.2004, 0.1515, 0.4968, 0.1513]
+[FusionPretrain] epoch=200 loss=0.4600 train_acc=0.8446 weights=[0.185, 0.1316, 0.552, 0.1315]
+[chameleon] fused embedding built (shape=(2277, 128))
+  fused embedding stats shape=(2277, 128) mean=0.0000 std=0.2463 min=-4.3964 max=3.5717
+  fusion weights ['linkx', 'fagcn', 'gprgnn', 'h2gcn'] = [0.185, 0.1316, 0.552, 0.1315]
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=64, add_graph_engineered_features=True
+[chameleon] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=200
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=200
+Applied feature normalization: none.
+Split complete: x_train=(1821, 200), x_test=(456, 200), num_classes=5, actual_train_test_ratio=3.9934
+TabPFN ensemble-selection enabled: sources=['fagcn', 'fused_weighted', 'gprgnn', 'h2gcn', 'linkx'], val_size=0.2, candidates_per_table=2, context_size=fit-full, colsample=[1.0, 1.0], max_selected=32, n_jobs=1
+TabPFN ensemble-selection test accuracy: 0.8048
+TabPFN ensemble-selection summary: fit_size=1456, val_size=365, num_candidates=10, num_selected=2, table_weights={'fagcn': 0.5, 'h2gcn': 0.5}
+TabPFN ensemble-selection classification report:
+              precision    recall  f1-score   support
+
+           0     0.9242    0.6703    0.7771        91
+           1     0.8421    0.8696    0.8556        92
+           2     0.6990    0.7912    0.7423        91
+           3     0.8081    0.7692    0.7882       104
+           4     0.7957    0.9487    0.8655        78
+
+    accuracy                         0.8048       456
+   macro avg     0.8138    0.8098    0.8057       456
+weighted avg     0.8142    0.8048    0.8036       456
+
+---------- STEP 1 OUTPUT END ------------ 
+---------- STEP 1 END 2026/05/08 周五 15:19:26.39 ---------- 
+ 
+---------- STEP 2 START 2026/05/08 周五 15:19:26.42 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset squirrel --encoder-fusion weighted --weighted-fusion-train-strategy two-stage --prediction-head tabpfn-ensemble-selection --embedding-branch branch2 --train-test-ratio 4 --val-size 0.25 --split-source random --pretrain-epochs 300 --fusion-epochs 200 --device cuda --tabpfn-device cuda --feature-normalization none --tabpfn-ens-candidates-per-table 2 --tabpfn-ens-colsample-min-rate 1.0 --tabpfn-ens-sources all-backbones 
+[INFO] Step 2 completed successfully. 
+---------- STEP 2 OUTPUT BEGIN ---------- 
+[INFO] Dataset 'squirrel' is heterophilous. Replacing base backbone 'gcn' -> 'linkx'.
+Linear pretrain split: train=3120, val=1040, test=1041
+Split setting: source=random, requested_train_test_ratio=4.0000
+Fusion setting: encoder_fusion=weighted, models=['linkx', 'fagcn', 'gprgnn', 'h2gcn'], hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, weighted_fusion_train_strategy=two-stage
+Pretraining encoder: linkx
+[Pretrain] epoch=001 loss=1.6694 train_acc=0.2096 val_acc=0.2038
+[Pretrain] epoch=020 loss=0.6476 train_acc=0.6240 val_acc=0.2577
+[Pretrain] epoch=040 loss=0.3700 train_acc=0.8061 val_acc=0.2904
+[Pretrain] epoch=060 loss=0.3528 train_acc=0.8830 val_acc=0.2750
+[Pretrain] epoch=080 loss=0.2824 train_acc=0.9282 val_acc=0.2817
+[Pretrain] epoch=100 loss=0.1925 train_acc=0.9199 val_acc=0.2913
+[Pretrain] epoch=120 loss=0.3618 train_acc=0.8429 val_acc=0.3000
+[Pretrain] epoch=140 loss=0.1691 train_acc=0.9449 val_acc=0.3173
+[Pretrain] epoch=160 loss=0.1458 train_acc=0.9513 val_acc=0.2962
+[Pretrain] epoch=180 loss=0.1315 train_acc=0.9494 val_acc=0.3106
+[Pretrain] epoch=200 loss=0.1759 train_acc=0.9494 val_acc=0.3087
+[Pretrain] epoch=220 loss=0.1236 train_acc=0.9609 val_acc=0.3154
+[Pretrain] epoch=240 loss=0.1135 train_acc=0.9596 val_acc=0.3077
+[Pretrain] epoch=260 loss=0.1085 train_acc=0.9612 val_acc=0.2885
+[Pretrain] epoch=280 loss=1.6262 train_acc=0.6115 val_acc=0.2663
+[Pretrain] epoch=300 loss=0.1680 train_acc=0.9503 val_acc=0.3106
+[Pretrain] selected epoch=039 val_acc=0.3433
+  linkx embedding shape: (5201, 128)
+Pretraining encoder: fagcn
+[Pretrain] epoch=001 loss=1.6115 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=020 loss=1.6095 train_acc=0.2000 val_acc=0.2000
+[Pretrain] epoch=040 loss=1.6094 train_acc=0.2000 val_acc=0.2000
+[Pretrain] epoch=060 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=080 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=100 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=120 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=140 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=160 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=180 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=200 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=220 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=240 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=260 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=280 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=300 loss=1.6094 train_acc=0.2003 val_acc=0.2000
+[Pretrain] selected epoch=001 val_acc=0.2000
+  fagcn embedding shape: (5201, 128)
+Pretraining encoder: gprgnn
+[Pretrain] epoch=001 loss=1.6183 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=020 loss=1.6020 train_acc=0.2808 val_acc=0.2490
+[Pretrain] epoch=040 loss=1.5276 train_acc=0.3308 val_acc=0.2606
+[Pretrain] epoch=060 loss=1.4900 train_acc=0.3670 val_acc=0.2606
+[Pretrain] epoch=080 loss=1.4015 train_acc=0.5035 val_acc=0.2750
+[Pretrain] epoch=100 loss=1.3144 train_acc=0.5199 val_acc=0.2673
+[Pretrain] epoch=120 loss=1.2835 train_acc=0.5994 val_acc=0.2760
+[Pretrain] epoch=140 loss=1.1954 train_acc=0.6410 val_acc=0.2769
+[Pretrain] epoch=160 loss=1.1764 train_acc=0.7067 val_acc=0.2865
+[Pretrain] epoch=180 loss=1.1187 train_acc=0.7490 val_acc=0.3048
+[Pretrain] epoch=200 loss=1.0998 train_acc=0.7712 val_acc=0.3048
+[Pretrain] epoch=220 loss=1.0628 train_acc=0.7247 val_acc=0.2933
+[Pretrain] epoch=240 loss=1.0359 train_acc=0.7410 val_acc=0.2923
+[Pretrain] epoch=260 loss=1.0333 train_acc=0.7772 val_acc=0.2962
+[Pretrain] epoch=280 loss=1.0407 train_acc=0.7830 val_acc=0.2856
+[Pretrain] epoch=300 loss=1.0037 train_acc=0.7837 val_acc=0.2952
+[Pretrain] selected epoch=257 val_acc=0.3163
+  gprgnn embedding shape: (5201, 128)
+Pretraining encoder: h2gcn
+[Pretrain] epoch=001 loss=1.6107 train_acc=0.2003 val_acc=0.2000
+[Pretrain] epoch=020 loss=1.5505 train_acc=0.2958 val_acc=0.3077
+[Pretrain] epoch=040 loss=1.5335 train_acc=0.2974 val_acc=0.3029
+[Pretrain] epoch=060 loss=1.5197 train_acc=0.2987 val_acc=0.3048
+[Pretrain] epoch=080 loss=1.5202 train_acc=0.3054 val_acc=0.3029
+[Pretrain] epoch=100 loss=1.5108 train_acc=0.3013 val_acc=0.3038
+[Pretrain] epoch=120 loss=1.5184 train_acc=0.3087 val_acc=0.2971
+[Pretrain] epoch=140 loss=1.5114 train_acc=0.3147 val_acc=0.2952
+[Pretrain] epoch=160 loss=1.5081 train_acc=0.3099 val_acc=0.3038
+[Pretrain] epoch=180 loss=1.5067 train_acc=0.3115 val_acc=0.2808
+[Pretrain] epoch=200 loss=1.5016 train_acc=0.3212 val_acc=0.2933
+[Pretrain] epoch=220 loss=1.5080 train_acc=0.3144 val_acc=0.2885
+[Pretrain] epoch=240 loss=1.5041 train_acc=0.3144 val_acc=0.2769
+[Pretrain] epoch=260 loss=1.5116 train_acc=0.2974 val_acc=0.2587
+[Pretrain] epoch=280 loss=1.5019 train_acc=0.3144 val_acc=0.3019
+[Pretrain] epoch=300 loss=1.5070 train_acc=0.2942 val_acc=0.2538
+[Pretrain] selected epoch=037 val_acc=0.3087
+  h2gcn embedding shape: (5201, 128)
+[FusionPretrain] epoch=001 loss=1.6351 train_acc=0.2505 weights=[0.2463, 0.2512, 0.2512, 0.2512]
+[FusionPretrain] epoch=020 loss=0.8416 train_acc=0.7476 weights=[0.3142, 0.2286, 0.2283, 0.2289]
+[FusionPretrain] epoch=040 loss=0.8161 train_acc=0.7555 weights=[0.3173, 0.2261, 0.229, 0.2276]
+[FusionPretrain] epoch=060 loss=0.7949 train_acc=0.7663 weights=[0.2965, 0.2272, 0.2424, 0.2339]
+[FusionPretrain] epoch=080 loss=0.7801 train_acc=0.7757 weights=[0.2998, 0.2152, 0.2558, 0.2291]
+[FusionPretrain] epoch=100 loss=0.7656 train_acc=0.7820 weights=[0.2982, 0.2004, 0.2809, 0.2206]
+[FusionPretrain] epoch=120 loss=0.7490 train_acc=0.7870 weights=[0.2921, 0.1817, 0.3201, 0.2061]
+[FusionPretrain] epoch=140 loss=0.7291 train_acc=0.7935 weights=[0.28, 0.1598, 0.3744, 0.1858]
+[FusionPretrain] epoch=160 loss=0.7067 train_acc=0.8014 weights=[0.2621, 0.1364, 0.4396, 0.1619]
+[FusionPretrain] epoch=180 loss=0.6847 train_acc=0.8101 weights=[0.2414, 0.1141, 0.5063, 0.1382]
+[FusionPretrain] epoch=200 loss=0.6660 train_acc=0.8147 weights=[0.2216, 0.0956, 0.5644, 0.1184]
+[squirrel] fused embedding built (shape=(5201, 128))
+  fused embedding stats shape=(5201, 128) mean=0.0032 std=0.1518 min=-1.9545 max=2.2640
+  fusion weights ['linkx', 'fagcn', 'gprgnn', 'h2gcn'] = [0.2216, 0.0956, 0.5644, 0.1184]
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=64, add_graph_engineered_features=True
+[squirrel] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=200
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=200
+Applied feature normalization: none.
+Split complete: x_train=(4160, 200), x_test=(1041, 200), num_classes=5, actual_train_test_ratio=3.9962
+TabPFN ensemble-selection enabled: sources=['fagcn', 'fused_weighted', 'gprgnn', 'h2gcn', 'linkx'], val_size=0.2, candidates_per_table=2, context_size=fit-full, colsample=[1.0, 1.0], max_selected=32, n_jobs=1
+TabPFN ensemble-selection test accuracy: 0.8002
+TabPFN ensemble-selection summary: fit_size=3328, val_size=832, num_candidates=10, num_selected=3, table_weights={'fagcn': 0.6666666666666666, 'h2gcn': 0.3333333333333333}
+TabPFN ensemble-selection classification report:
+              precision    recall  f1-score   support
+
+           0     0.7155    0.7943    0.7528       209
+           1     0.7172    0.6827    0.6995       208
+           2     0.7989    0.7260    0.7607       208
+           3     0.8545    0.8750    0.8646       208
+           4     0.9187    0.9231    0.9209       208
+
+    accuracy                         0.8002      1041
+   macro avg     0.8010    0.8002    0.7997      1041
+weighted avg     0.8009    0.8002    0.7997      1041
+
+---------- STEP 2 OUTPUT END ------------ 
+---------- STEP 2 END 2026/05/08 周五 16:18:46.82 ---------- 
+ 
+---------- STEP 3 START 2026/05/08 周五 16:18:46.86 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset Actor --encoder-fusion weighted --weighted-fusion-train-strategy two-stage --prediction-head tabpfn-ensemble-selection --embedding-branch branch2 --train-test-ratio 4 --val-size 0.25 --split-source random --pretrain-epochs 300 --fusion-epochs 200 --device cuda --tabpfn-device cuda --feature-normalization none --tabpfn-ens-candidates-per-table 2 --tabpfn-ens-colsample-min-rate 1.0 --tabpfn-ens-sources all-backbones 
+[INFO] Step 3 completed successfully. 
+---------- STEP 3 OUTPUT BEGIN ---------- 
+[INFO] Dataset 'Actor' is heterophilous. Replacing base backbone 'gcn' -> 'linkx'.
+Linear pretrain split: train=4560, val=1520, test=1520
+Split setting: source=random, requested_train_test_ratio=4.0000
+Fusion setting: encoder_fusion=weighted, models=['linkx', 'fagcn', 'gprgnn', 'h2gcn'], hidden_dim=128, embedding_dim=128, num_layers=2, dropout=0.5, gat_heads=8, weighted_fusion_train_strategy=two-stage
+Pretraining encoder: linkx
+[Pretrain] epoch=001 loss=1.6446 train_acc=0.2581 val_acc=0.2586
+[Pretrain] epoch=020 loss=0.1983 train_acc=0.8333 val_acc=0.2974
+[Pretrain] epoch=040 loss=0.1624 train_acc=0.9333 val_acc=0.3013
+[Pretrain] epoch=060 loss=0.1371 train_acc=0.9158 val_acc=0.2743
+[Pretrain] epoch=080 loss=0.1087 train_acc=0.9522 val_acc=0.3072
+[Pretrain] epoch=100 loss=0.0788 train_acc=0.9680 val_acc=0.2914
+[Pretrain] epoch=120 loss=0.0679 train_acc=0.9638 val_acc=0.3013
+[Pretrain] epoch=140 loss=0.0682 train_acc=0.9717 val_acc=0.3039
+[Pretrain] epoch=160 loss=0.0787 train_acc=0.9715 val_acc=0.3026
+[Pretrain] epoch=180 loss=0.0691 train_acc=0.9675 val_acc=0.3105
+[Pretrain] epoch=200 loss=0.0681 train_acc=0.9717 val_acc=0.3178
+[Pretrain] epoch=220 loss=0.0654 train_acc=0.9730 val_acc=0.3211
+[Pretrain] epoch=240 loss=0.0847 train_acc=0.9645 val_acc=0.3230
+[Pretrain] epoch=260 loss=0.0747 train_acc=0.9719 val_acc=0.3046
+[Pretrain] epoch=280 loss=0.0788 train_acc=0.9728 val_acc=0.3033
+[Pretrain] epoch=300 loss=0.0686 train_acc=0.9724 val_acc=0.2947
+[Pretrain] selected epoch=240 val_acc=0.3230
+  linkx embedding shape: (7600, 128)
+Pretraining encoder: fagcn
+[Pretrain] epoch=001 loss=1.6155 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=020 loss=1.5503 train_acc=0.2761 val_acc=0.2783
+[Pretrain] epoch=040 loss=1.4828 train_acc=0.3531 val_acc=0.3480
+[Pretrain] epoch=060 loss=1.4379 train_acc=0.3583 val_acc=0.3421
+[Pretrain] epoch=080 loss=1.4166 train_acc=0.3616 val_acc=0.3428
+[Pretrain] epoch=100 loss=1.4147 train_acc=0.3537 val_acc=0.3217
+[Pretrain] epoch=120 loss=1.3987 train_acc=0.3546 val_acc=0.3270
+[Pretrain] epoch=140 loss=1.4073 train_acc=0.3270 val_acc=0.3092
+[Pretrain] epoch=160 loss=1.3971 train_acc=0.3254 val_acc=0.3092
+[Pretrain] epoch=180 loss=1.3935 train_acc=0.3377 val_acc=0.3164
+[Pretrain] epoch=200 loss=1.3975 train_acc=0.3498 val_acc=0.3211
+[Pretrain] epoch=220 loss=1.3949 train_acc=0.3522 val_acc=0.3257
+[Pretrain] epoch=240 loss=1.3853 train_acc=0.3467 val_acc=0.3263
+[Pretrain] epoch=260 loss=1.3886 train_acc=0.3322 val_acc=0.3151
+[Pretrain] epoch=280 loss=1.3957 train_acc=0.3434 val_acc=0.3138
+[Pretrain] epoch=300 loss=1.3897 train_acc=0.3454 val_acc=0.3178
+[Pretrain] selected epoch=029 val_acc=0.3671
+  fagcn embedding shape: (7600, 128)
+Pretraining encoder: gprgnn
+[Pretrain] epoch=001 loss=1.6298 train_acc=0.2586 val_acc=0.2612
+[Pretrain] epoch=020 loss=1.5077 train_acc=0.3522 val_acc=0.3355
+[Pretrain] epoch=040 loss=1.4045 train_acc=0.4254 val_acc=0.3546
+[Pretrain] epoch=060 loss=1.3293 train_acc=0.4408 val_acc=0.3316
+[Pretrain] epoch=080 loss=1.2792 train_acc=0.4583 val_acc=0.3270
+[Pretrain] epoch=100 loss=1.2572 train_acc=0.4669 val_acc=0.3329
+[Pretrain] epoch=120 loss=1.2430 train_acc=0.4807 val_acc=0.3191
+[Pretrain] epoch=140 loss=1.2355 train_acc=0.4695 val_acc=0.3112
+[Pretrain] epoch=160 loss=1.2169 train_acc=0.4794 val_acc=0.3191
+[Pretrain] epoch=180 loss=1.1950 train_acc=0.4706 val_acc=0.3191
+[Pretrain] epoch=200 loss=1.1957 train_acc=0.4897 val_acc=0.3092
+[Pretrain] epoch=220 loss=1.2006 train_acc=0.4513 val_acc=0.3053
+[Pretrain] epoch=240 loss=1.1896 train_acc=0.4711 val_acc=0.3026
+[Pretrain] epoch=260 loss=1.1995 train_acc=0.4930 val_acc=0.3099
+[Pretrain] epoch=280 loss=1.1854 train_acc=0.4871 val_acc=0.3138
+[Pretrain] epoch=300 loss=1.1806 train_acc=0.5068 val_acc=0.3178
+[Pretrain] selected epoch=040 val_acc=0.3546
+  gprgnn embedding shape: (7600, 128)
+Pretraining encoder: h2gcn
+[Pretrain] epoch=001 loss=1.6077 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=020 loss=1.5727 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=040 loss=1.5722 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=060 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=080 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=100 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=120 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=140 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=160 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=180 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=200 loss=1.5724 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=220 loss=1.5727 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=240 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=260 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=280 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] epoch=300 loss=1.5725 train_acc=0.2586 val_acc=0.2586
+[Pretrain] selected epoch=001 val_acc=0.2586
+  h2gcn embedding shape: (7600, 128)
+[FusionPretrain] epoch=001 loss=1.6308 train_acc=0.0750 weights=[0.2463, 0.2512, 0.2512, 0.2512]
+[FusionPretrain] epoch=020 loss=0.7071 train_acc=0.8090 weights=[0.3125, 0.2288, 0.2298, 0.2289]
+[FusionPretrain] epoch=040 loss=0.6956 train_acc=0.8109 weights=[0.3028, 0.2318, 0.2341, 0.2313]
+[FusionPretrain] epoch=060 loss=0.6854 train_acc=0.8117 weights=[0.2822, 0.2381, 0.2422, 0.2375]
+[FusionPretrain] epoch=080 loss=0.6829 train_acc=0.8112 weights=[0.2874, 0.2356, 0.242, 0.235]
+[FusionPretrain] epoch=100 loss=0.6815 train_acc=0.8113 weights=[0.2875, 0.2344, 0.2446, 0.2335]
+[FusionPretrain] epoch=120 loss=0.6804 train_acc=0.8118 weights=[0.2873, 0.2329, 0.2484, 0.2313]
+[FusionPretrain] epoch=140 loss=0.6793 train_acc=0.8120 weights=[0.2868, 0.2311, 0.2535, 0.2285]
+[FusionPretrain] epoch=160 loss=0.6782 train_acc=0.8122 weights=[0.2859, 0.229, 0.2601, 0.2251]
+[FusionPretrain] epoch=180 loss=0.6770 train_acc=0.8122 weights=[0.2846, 0.2263, 0.2681, 0.221]
+[FusionPretrain] epoch=200 loss=0.6759 train_acc=0.8123 weights=[0.283, 0.2233, 0.2775, 0.2163]
+[Actor] fused embedding built (shape=(7600, 128))
+  fused embedding stats shape=(7600, 128) mean=0.0057 std=0.2445 min=-15.3503 max=18.1122
+  fusion weights ['linkx', 'fagcn', 'gprgnn', 'h2gcn'] = [0.283, 0.2233, 0.2775, 0.2163]
+Prediction embedding branch setting: branch=branch2, pre_agg_pca_dim=64, add_graph_engineered_features=True
+[Actor] prediction uses concatenated embedding: gnn_dim=128 + pre_agg_dim=64 -> total_dim=200
+Appended graph engineered features to prediction embedding: [lap_rw_resp_norm, neighbor_count, degree, l2_diff_1hop(1), cos_sim_1hop(1), hop1_dispersion_trace(1), hop2_dispersion_trace(1), pagerank(1)], new_total_dim=200
+Applied feature normalization: none.
+Split complete: x_train=(6080, 200), x_test=(1520, 200), num_classes=5, actual_train_test_ratio=4.0000
+TabPFN ensemble-selection enabled: sources=['fagcn', 'fused_weighted', 'gprgnn', 'h2gcn', 'linkx'], val_size=0.2, candidates_per_table=2, context_size=fit-full, colsample=[1.0, 1.0], max_selected=32, n_jobs=1
+TabPFN ensemble-selection test accuracy: 0.3822
+TabPFN ensemble-selection summary: fit_size=4864, val_size=1216, num_candidates=10, num_selected=2, table_weights={'fagcn': 0.5, 'h2gcn': 0.5}
+TabPFN ensemble-selection classification report:
+              precision    recall  f1-score   support
+
+           0     0.4519    0.3567    0.3987       171
+           1     0.2908    0.2734    0.2819       267
+           2     0.2559    0.1994    0.2241       326
+           3     0.2787    0.2810    0.2798       363
+           4     0.5447    0.7125    0.6174       393
+
+    accuracy                         0.3822      1520
+   macro avg     0.3644    0.3646    0.3604      1520
+weighted avg     0.3642    0.3822    0.3689      1520
+
+---------- STEP 3 OUTPUT END ------------ 
+---------- STEP 3 END 2026/05/08 周五 19:10:37.59 ---------- 
+ 
+---------- STEP 4 START 2026/05/08 周五 19:10:37.63 ---------- 
+Command: python examples/train_gcn_planetoid.py --dataset Computers --encoder-fusion weighted --weighted-fusion-train-strategy two-stage --prediction-head tabpfn-ensemble-selection --embedding-branch branch2 --train-test-ratio 4 --val-size 0.25 --split-source random --pretrain-epochs 300 --fusion-epochs 200 --device cuda --tabpfn-device cuda --feature-normalization none --tabpfn-ens-candidates-per-table 2 --tabpfn-ens-colsample-min-rate 1.0 --tabpfn-ens-sources all-backbones 
